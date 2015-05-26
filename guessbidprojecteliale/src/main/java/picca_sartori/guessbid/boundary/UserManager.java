@@ -69,8 +69,8 @@ public class UserManager {
             if (!"".equals(usertoupdate.getPassword())) {
                 utente.setPassword(usertoupdate.getPassword());
             }
-            if (!"".equals(usertoupdate.getCity())) {
-                utente.setCity(usertoupdate.getCity());
+            if (!"".equals(usertoupdate.getAge())) {
+                utente.setAge(usertoupdate.getAge());
             }
     }
 }

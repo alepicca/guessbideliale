@@ -17,7 +17,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 public class Users implements Serializable {
     
-    //sistemareeeeeeeeeee!!!
     private static final long serialVersionUID = 1L;
     public static final String findByCity = "Users.findByCity";
     public static final String advancedSearch = "Users.advancedSearch";
@@ -36,37 +35,44 @@ public class Users implements Serializable {
     @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,3})$",
             message = "invalid email")
     @NotNull(message = "May not be empty")
-    @Size(min=8, max=25)
+    @Size(min=8, max=45)
     @Column(name="Email")
     private String email;
     
     @Pattern(regexp="^[a-z]*$",
             message="You inserted an invalid character")
     @NotNull (message = "May not be empty")
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 25)
     @Column(name = "FirstName")
     private String firstname;
     
     @Pattern(regexp="^[a-z]*$",
             message="You inserted an invalid character")
     @NotNull (message = "May not be empty")
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 25)
     @Column(name = "LastName")
     private String lastname;
     
     @Pattern(regexp="^[a-z0-9A-Z_-טיעלחאש!@#+*|]*$",
             message="You inserted an invalid character")
     @NotNull(message = "May not be empty")
-    @Size(min = 5, max = 45)
+    @Size(min = 5, max = 20)
     @Column(name = "Password")
     private String password;
     
-    @Pattern(regexp="^[a-z0-9A-Z_-טיעלחאש!@#+*|]*$",
+    @Pattern(regexp="^[0-9]*$",
             message="You inserted an invalid character")
     @NotNull(message = "May not be empty")
-    @Size(min = 1, max = 45)
-    @Column(name = "City")
-    private String city;
+    @Size(min = 2, max = 3)
+    @Column(name = "Age")
+    private String age;
+    
+    @Pattern(regexp="^[0-9]*$",
+            message="You inserted an invalid character")
+    @NotNull(message = "May not be empty")
+    @Size(min = 1, max = 3)
+    @Column(name = "Balance")
+    private String balance;
     
     @NotNull(message = "May not be empty")
     @Size(min = 1, max = 45)
@@ -80,13 +86,14 @@ public class Users implements Serializable {
         this.username = username;
     }
 
-    public Users(String username, String email, String firstname, String lastname, String password, String city, String groupname) {
+    public Users(String username, String email, String firstname, String lastname, String password, String age, String balance, String groupname) {
         this.username = username;
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
-        this.city = city;
+        this.age=age;
+        this.balance = balance;
         this.groupname = groupname;
     }
   
@@ -138,11 +145,19 @@ public class Users implements Serializable {
         this.password = PasswordEncrypter.encryptPassword(password);
     }
     
-    public String getCity() {
-        return city;
+    public String getAge() {
+        return age;
     }
     
-    public void setCity (String city) {
-        this.city = city;
+    public void setAge (String age) {
+        this.age = age;
+    }
+    
+    public String getBalance() {
+        return balance;
+    }
+    
+    public void setBalance (String balance) {
+        this.balance = balance;
     }
 }

@@ -15,10 +15,13 @@ import javax.servlet.http.HttpServletRequest;
  * @author ale
  */
 
-@Named
-@RequestScoped
+
 @ManagedBean(name="LoginBean")
+@RequestScoped
 public class LoginBean {
+    
+    @Inject
+    private Logger logger;
     
     private String username;
     private String password;

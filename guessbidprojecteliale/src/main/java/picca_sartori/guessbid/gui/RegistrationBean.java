@@ -10,8 +10,8 @@ import javax.inject.Named;
  * @author Ale
  */
 
-@Named(value="RegistrationBean")
 @RequestScoped
+@Named("RegistrationBean")
 public class RegistrationBean {
     
      @EJB

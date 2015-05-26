@@ -22,22 +22,5 @@
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
  
- <managed-bean>
-  <managed-bean-name>UsersSearchBean</managed-bean-name>
-  <managed-bean-class>picca_sartori.guessbid.gui.UsersSearchRegistrationBean</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
- </managed-bean>
- 
- <managed-bean>
-  <managed-bean-name>EventSearchBean</managed-bean-name>
-  <managed-bean-class>picca_sartori.guessbid.gui.EventSearchBean</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
- </managed-bean>
- 
- <managed-bean>
-  <managed-bean-name>EventBean</managed-bean-name>
-  <managed-bean-class>picca_sartori.guessbid.gui.EventBean</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
- </managed-bean>
  
 </faces-config>

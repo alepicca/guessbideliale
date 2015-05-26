@@ -5,12 +5,12 @@
      xmlns:f="http://java.sun.com/jsf/core"
      xmlns:p="http://primefaces.org/ui">
     <head>
-        <title>MeteoCal</title>
+        <title>GuessBid</title>
     </head>
-    <body>
+    <body bgcolor="lightgreen">
         <div id='page'>
                     <div id="guessBidLogo" style="position: absolute; top: 50px; right: 50px;">
-                        <a href='#'><img src='webapp/images/logo.png' alt="logo"/>
+                        <a href='#'><img src="./images/logo.jpg" style="height: 100px; width: 150px" alt="logo"/>
                         </a>
                 </div>
             <div id='title' style="font-size: 25px; color: blue; font-family: cursive; top: 20px; left: 20px;" >
@@ -26,7 +26,7 @@
                          <h:outputText value="Registration"/>
                          </f:facet>
                                       <h:outputLabel for="username"> Username
-                                <h:inputText id="username" value="#{RegistrationBean.user.username}" style="width:300px; float: left; background-color: white" >
+                                          <h:inputText id="username" value="#{RegistrationBean.user.username}" style="width:300px; float: left; background-color: white" >
                                      <ajax update="messageusername" placeholder="Insert Username" />
                                 </h:inputText>
                                 <h:message id="messageusername" for="username" />
@@ -70,11 +70,11 @@
                             </h:outputLabel>
                             <br />    
                             
-                              <h:outputLabel for="city">City
-                                <h:inputText id="city" value="#{RegistrationBean.user.city}" style="width:300px; float:left; background-color: white">
-                                     <ajax update="messagecity" placeholder="Insert your City"/>
+                              <h:outputLabel for="age">Age
+                                  <h:inputText id="age" value="#{RegistrationBean.user.age}" style="width:300px; float:left; background-color: white">
+                                     <ajax update="messageage" placeholder="How old are you?"/>
                                 </h:inputText>
-                                <h:message id="messagecity" for="city" />
+                                <h:message id="messageage" for="age" />
                             </h:outputLabel>
                             <br />  
                             

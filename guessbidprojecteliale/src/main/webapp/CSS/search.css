@@ -1,0 +1,27 @@
+body {
+    background-color: inherit;
+}
+
+.findbyobject {
+    border:  #000000;
+}
+
+.findbyuser {
+    border: #000000;
+}
+
+.findgeneric {
+    border: #000000;
+}
+
+.cercaoggetto {
+     border: #000000;
+}
+
+.cercatutto {
+     border: #000000;
+}
+
+.cercautente{
+     border: #000000;
+}
