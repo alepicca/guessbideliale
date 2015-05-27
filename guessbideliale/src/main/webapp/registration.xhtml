@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>GuessBid</title>
+    </head>
+    <body bgcolor="lightgreen">
+        <div id='page'>
+                    <div id="guessBidLogo" style="position: absolute; top: 50px; right: 50px;">
+                        <a href='#'><img src="./images/logo.jpg" style="height: 100px; width: 150px" alt="logo"/>
+                        </a>
+                </div>
+            <div id='title' style="font-size: 25px; color: blue; font-family: cursive; top: 20px; left: 20px;" >
+                 <p> GuessBid</p>  <br />
+                <p> Place your bet! </p> 
+            </div>
+            <div id="registration"  >
+                 <center>
+                     <h:form id="registrationform" class="registration" style="background-color: cyan; position: absolute; top: 150px;
+                                    height: content-box; width: content-box; right: 350px; text-align: center;" >
+                         <h:panelGrid columns="1">
+                          <f:facet name="header">
+                         <h:outputText value="Registration"/>
+                         </f:facet>
+                                      <h:outputLabel for="username"> Username
+                                          <h:inputText id="username" value="#{RegistrationBean.user.username}" style="width:300px; float: left; background-color: white" >
+                                     <ajax update="messageusername" placeholder="Insert Username" />
+                                </h:inputText>
+                                <h:message id="messageusername" for="username" />
+                            </h:outputLabel>
+                                      <br /> 
+                                      
+                                      <h:outputLabel for="email">E-mail
+                                <h:inputText id="email" value="#{RegistrationBean.user.email}" style="width:300px;  float:left; background-color: white">
+                                     <ajax update="messageemail" placeholder="Insert a valid Email address"/>
+                                </h:inputText>
+                                <h:message id="messageemail" for="email" />
+                            </h:outputLabel>     
+                            <br />
+                            
+                            <h:outputLabel for="firstname">First Name
+                                <h:inputText id="firstname" value="#{RegistrationBean.user.firstname}" style="width:300px; float:left; background-color: white">
+                                     <ajax update="messagefirstname" placeholder="Insert your First Name" />
+                                </h:inputText>
+                                <h:message id="messagefirstname" for="firstname" />
+                            </h:outputLabel>
+                            <br />
+                            
+                            <h:outputLabel for="lastname">Last Name
+                                <h:inputText id="lastname" value="#{RegistrationBean.user.lastname}" style="width:300px; float:left; background-color: white">
+                                     <ajax update="messagelastname" placeholder="Insert your Last Name"/>
+                                </h:inputText>
+                                <h:message id="messagelastname" for="lastname" />
+                            </h:outputLabel>
+                            <br />
+                                                                                                    
+                            <h:outputLabel for="password">Password
+                                <h:inputText id="password" value="#{RegistrationBean.user.password}" style="width:300px;  float:left; background-color: white">
+                                     <ajax   feedback="true" match="confirmpassword" label="Password" placeholder="Select a valid password"/> 
+                                </h:inputText>
+                            </h:outputLabel>
+                            <br />
+                            
+                            <h:outputLabel for="confirmpassword" >Confirm password
+                                 <h:inputText> 
+                                     <p:password id="confirmpassword" style="width:300px;  float:left; background-color: white" placeholder="Confirm your password" /> </h:inputText>
+                            </h:outputLabel>
+                            <br />    
+                            
+                     
+                            <f:facet name="footer">
+                                <h:panelGroup style="display:block; text-align:center">
+                                <h:commandButton id="submitregistration" value="Register" action="#{RegistrationBean.register()}" />
+                                </h:panelGroup>
+                            </f:facet>
+                            </h:panelGrid>
+                     </h:form> 
+                                     </center>
+                      </div>
+                     <div style="font-size: 25px; position: absolute; bottom:10px; left:33%; right:33%;"  >
+                     <h:link outcome="index" value="Go back "  />
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <h:link outcome="login" value="Already registered? Log in!!" />
+                     </div>
+            </div>
+    </body>
+</html>
