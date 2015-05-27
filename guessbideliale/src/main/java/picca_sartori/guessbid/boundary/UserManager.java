@@ -24,7 +24,7 @@ public class UserManager {
 
     public void save(Users user) {
         user.setGroupname(Groups.USERS);
-        //user.setBalance(100);
+        user.setBalance(100);
         em.persist(user);
     }
 
