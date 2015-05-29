@@ -5,15 +5,33 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
-@Entity(name = "USERS")
+@Entity(name = "users")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "users.findAll", query = "SELECT u FROM users u"),
+    @NamedQuery(name = "users.findByAge", query = "SELECT u FROM users u WHERE u.age = :age"),
+    @NamedQuery(name = "users.findByUsername", query = "SELECT u FROM users u WHERE u.username = :username"),
+    @NamedQuery(name = "users.findByFirstname", query = "SELECT u FROM users u WHERE u.firstname = :firstname"),
+    @NamedQuery(name = "users.findByLastname", query = "SELECT u FROM users u WHERE u.lastname = :lastname"),
+    @NamedQuery(name = "users.findByEmail", query = "SELECT u FROM users u WHERE u.email = :email"),
+})
 public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    public static final String findByAge = "users.findByAge";
+    public static final String findByAll = "users.findByAll";
+    public static final String findByUsername = "users.findByUsername";
+    public static final String findByFirstname = "users.findByFirstname";
+    public static final String findByLastname = "users.findByLastname";
+    public static final String findByEmail= "users.findByEmail";
 
     @Id
     @Pattern(regexp = "^[a-z0-9A-Z_]{5,25}$", message = "invalid username")

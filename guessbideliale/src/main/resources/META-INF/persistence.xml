@@ -3,11 +3,12 @@
   <persistence-unit name="authPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>jdbc/guessbid</jta-data-source>
-    <class>picca_sartori.guessbid.entity.Users</class>
+   <validation-mode> NONE </validation-mode> 
+  <!-- <class>picca_sartori.guessbid.entity.Users</class>
     <class>picca_sartori.guessbid.entity.Auction</class>
     <class>picca_sartori.guessbid.entity.Bid</class>
     <class>picca_sartori.guessbid.entity.Object</class>
-    <class>picca_sartori.guessbid.entity.Notification</class>
+    <class>picca_sartori.guessbid.entity.Notification</class> -->
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>
       <property name="javax.persistence.schema-generation.database.action" value="create-or-extend-tables"/>

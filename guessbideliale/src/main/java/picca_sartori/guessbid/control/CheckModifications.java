@@ -17,7 +17,7 @@ public class CheckModifications {
     EntityManager em;
     
     
-  /*  
+   
     //no doppioni username nel db: ritorna vero
     public boolean checkDoubleUsername(String username){
            List<Users> result = em.createNamedQuery(Users.findByUsername, Users.class)
@@ -29,7 +29,7 @@ public class CheckModifications {
     public boolean checkCorrectUsername(String username){
              return username.matches("^[a-z0-9A-Z_]{5,25}$");
     }
-    //no doppioni pwd nel db: ritorna vero
+    //no doppioni email nel db: ritorna vero
     public boolean checkDoubleEmail (String email) {
          List<Users> result = em.createNamedQuery(Users.findByEmail, Users.class)
                   .setParameter("email", email)
@@ -43,6 +43,10 @@ public class CheckModifications {
     //password e password confermata sono uguali: ritorna vero
     public boolean  equalsPassword(String pwd1, String pwd2) {
         return pwd1.equals(pwd2);
+    }
+    
+     public boolean checkCorrectAge(String age){
+             return age.matches("^[0-9]*${2,3})$");
     }
     
   /*  public boolean checkDoubleAuctionName(String auctionname){

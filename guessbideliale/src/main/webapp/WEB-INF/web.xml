@@ -17,7 +17,9 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
         <url-pattern>*.xhtml</url-pattern>
+        <url-pattern>*.jsf</url-pattern>        
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -35,7 +37,7 @@
             <form-error-page>/login.xhtml?error=true</form-error-page>
         </form-login-config>
     </login-config>
-    <security-constraint>
+  <!--  <security-constraint>
         <web-resource-collection>
             <web-resource-name>Logged User</web-resource-name>
             <description/>
@@ -45,4 +47,13 @@
             <role-name>USERS</role-name>
         </auth-constraint>
     </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                Allowed resources
+            </web-resource-name>
+            <url-pattern>
+                /javax.faces.resources/*</url-pattern>
+        </web-resource-collection>
+    </security-constraint> -->
 </web-app>

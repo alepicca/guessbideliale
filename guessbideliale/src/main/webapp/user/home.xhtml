@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding='UTF-8' ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
     <head>
         <title>GuessBid</title>
         <meta charset='UTF-8'/>
@@ -56,10 +60,11 @@
         <div class="content">
             <div class="banner"> <h3> Welcome, #{LoginBean.username} </h3> </div>
             <div class="header"> <ul id="menu">
-    <li><a href="settings.xhtml">Settings</a></li>
-    <li><a href="currentauction.xhtml">Current Auction</a></li>
-    <li><a href="notification.xhtml">Notification</a></li>
-    <li><a href="historical.xhtml">Historical</a></li>
+          <li><a href="./user/settings.xhtml">Settings</a></li>
+    <li><a href="./user/currentauction.xhtml">Current Auction</a></li>
+    <li><a href="./user/notification.xhtml">Notification</a></li>
+    <li><a href="./user/historical.xhtml">Historical</a></li>
+    <h:link outcome="createauction" value="create a new auction!" />
     <li><a href="#">Logout</a></li> <!-- al posto di href fare metodo logout (prendere da qualche progetto vecchio -->
     </ul>
                 <div id="tfheader" >

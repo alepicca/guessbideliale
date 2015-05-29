@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding='UTF-8' ?>
+<?xml version="1.0" encoding='UTF-8'?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:h="http://java.sun.com/jsf/html"
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui"
         xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -55,13 +55,21 @@
 		clear:both;
 	}
 </style>
+         <script src="jquery-1.6.2.min.js"></script>
+<script src="jquery-ui-1.8.15.custom.min.js"></script>
+<link rel="stylesheet" href="jquery/jqueryCalendar.css"/>
+   <script>
+                jQuery(function() {
+                                jQuery( "#{EventBean.event.dataEvento}" ).datepicker();
+                });
+                </script>
     </head>
     <body>
         <div class="content">
             <div class="banner"> </div>
             <div class="header"> <ul id="menu">
     <li><a href="home.xhtml">Home Page</a></li>
-    <li><a href="currentauction.xhtml">Current Auction</a></li>
+    <li><a href="settings.xhtml">Settings</a></li>
     <li><a href="notification.xhtml">Notification</a></li>
     <li><a href="historical.xhtml">Historical</a></li>
     <li><a href="#">Logout</a></li> <!-- al posto di href fare metodo logout (prendere da qualche progetto vecchio -->
@@ -74,52 +82,26 @@
 	<div class="tfclear"></div>
 	</div>
             </div>
-            <div class="body">  
-            <div id='changeprofiledate'> Fill the following form only with data you want to modify! </div>
-      <h:form>
-           <panel header="Login Form">
-                <h:panelGrid columns="1">
-        <div >
-            <h:outputLabel id='modifyusername' for="modusername">Username:</h:outputLabel>
-            <h:inputText id='username' value="#{UserBean.modifieduser.username}" class='feedback-input' />
-        </div>
-        <div >
-            <h:outputLabel id='modifyfirstname' for="modfirstname">First Name:</h:outputLabel>
-            <h:inputText id='firstname' value="#{UserBean.modifieduser.firstname}" class='feedback-input' />
-        </div>
-        <div >
-            <h:outputLabel id='modifylastname' for="lastname">Last Name:</h:outputLabel>
-            <h:inputText id='lastname' value="#{UserBean.modifieduser.lastname}" class='feedback-input' />
-        </div>
-        <div >
-            <h:outputLabel id='modifyemail' for="email">Email:</h:outputLabel>
-            <h:inputText id='email' value="#{UserBean.modifieduser.email}" class='feedback-input' />
-        </div>
-        <div >
-            <h:outputLabel id='modifypassword' for="password">Password:</h:outputLabel>
-            <h:inputSecret id='password' value="#{UserBean.modifieduser.password}" class='feedback-input' />
-        </div>
-        <div >
-            <h:outputLabel id='confirmmodifypassword' for="confirmpassword">Confirm New Password:</h:outputLabel>
-            <h:inputSecret id='confirmpassword' value="#{UserBean.pwdconfirmed}" class='feedback-input' />
-        </div>
-        <div >
-            <h:outputLabel id='modifyage' for="age">Age:</h:outputLabel>
-            <h:inputSecret id='age' value="#{UserBean.modifieduser.age}" class='feedback-input' />
-        </div>     
-                    
-    <!--    < >
-           <h:outputText value="#{UserBean.message}"></h:outputText>
-        </div> -->
-    
-        <div id='submitmodification'>
-            <h:commandButton type='submit' value='MODIFY DATA' id='buttonchange' action="#{UserBean.submitChangeData()}"/>
-        </div>
-                    </h:panelGrid>
-                </panel>
-      </h:form>
-         <h:link outcome="home" value="Go back to home without modifying anything" /></div>
+            <div class="body">
+        <h:form class="auctioncreation">
+                <p:panel>
+                    <b> <u> Create the auction, sell your object! </u> </b> 
+                  <fieldset>
+                       <br/>
+                       <label for="text">Description of the auctioned object</label>
+                       <br/>
+                       <p:inputText id="description" type="text" placeholder="Describe what you want to auction" value="#{CreateAuctionBean.auction.title}" required="true" requiredMessage="The description of the auctioned object is a mandatory field!"/>
+                  </fieldset>
+                  <fieldset>
+                      <label for="date">Date (DD/MM/YYYY):</label>
+                      <br/>
+                      <p:calendar  id="expdate" value="#{CreateAuctionBean.auction.expdate}"  placeholder="Expiration date of the auction" required="true" requiredMessage="Expiration date is a mandatory field!" /> 
+                  </fieldset>
+                    <p:commandButton action="#{CreateAuctionBean.createauction(UserBean.currentuser.username)}" value="CREATE THE AUCTION" ajax="true" update="@all"/>
+                </p:panel>
+            </h:form>    
             <div class="footer"> <h4> Tavava productions, all rights reserved </h4> </div>
+        </div>
         </div>
     </body>
 </html>

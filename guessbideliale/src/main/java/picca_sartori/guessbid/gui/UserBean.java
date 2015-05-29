@@ -5,6 +5,7 @@ import picca_sartori.guessbid.control.CheckModifications;
 import picca_sartori.guessbid.control.PasswordEncrypter;
 import picca_sartori.guessbid.entity.Users;
 import javax.ejb.EJB;
+import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
@@ -14,7 +15,7 @@ import javax.enterprise.context.RequestScoped;
  */   
 
 @Named ("UserBean")
-@RequestScoped
+@Dependent
 public class UserBean {
     
     @EJB
@@ -23,7 +24,8 @@ public class UserBean {
     @EJB
     private CheckModifications cm;
     
-    private Users currentuser;
+    public static Users currentuser;
+    private Users modifieduser;
     private String warning;
     private String message;
     private String pwdconfirmed;
@@ -32,11 +34,19 @@ public class UserBean {
     }
     
     public Users getCurrentuser() {
-        return currentuser;
+        return um.getLoggedUser();
     }
 
     public void setCurrentuser(Users currentuser) {
         this.currentuser = currentuser;
+    }
+    
+     public Users getModifieduser() {
+        return modifieduser;
+    }
+
+    public void setModifieduser(Users modifieduser) {
+        this.modifieduser = modifieduser;
     }
     
      public String getWarning() {
@@ -63,27 +73,29 @@ public class UserBean {
         this.message = message;
     }
 
-  /*  public void submitChangeData() {
+   public void submitChangeData() {
 
-        if (!cm.checkDoubleUsername(currentuser.getUsername())) {
+        if (!cm.checkDoubleUsername(modifieduser.getUsername())) {
             warning = "Select another username, this one already exists";} 
-        else if (!cm.checkDoubleEmail(currentuser.getEmail())) {
+        else if (!cm.checkDoubleEmail(modifieduser.getEmail())) {
             warning = "Insert another email address, the one you entered is already in use";}
-        else if (!cm.checkCorrectUsername(currentuser.getUsername())) {
+        else if (!cm.checkCorrectUsername(modifieduser.getUsername())) {
             warning = "Please insert a valid username";}
-        else if (!cm.checkCorrectEmail(currentuser.getEmail())) {
+        else if (!cm.checkCorrectEmail(modifieduser.getEmail())) {
             warning = "Please insert a valid email address";}
-        else if (!cm.equalsPassword(currentuser.getPassword(), PasswordEncrypter.encryptPassword(pwdconfirmed))) {
+        else if (!cm.equalsPassword(modifieduser.getPassword(), PasswordEncrypter.encryptPassword(pwdconfirmed))) {
             warning = "Two passwords are not the same: check possible errors";}
         else if ((pwdconfirmed.length() < 5 )) {
             warning = "Your password must contain at least five characters";}
+        else if (!cm.checkCorrectAge(modifieduser.getAge())) {
+            warning = "Insert your real age, please";}
         else {
-            currentuser.setUsername(um.getLoggedUser().getUsername());
-            um.changeData(currentuser);
-            this.message = "Succesful update!";
+            ;
+            um.changeData(modifieduser);
+            this.message = "Succesful update!"; 
         } 
 
-    }*/
+    }
     
     public String getUsername() {
         return um.getLoggedUser().getUsername();
