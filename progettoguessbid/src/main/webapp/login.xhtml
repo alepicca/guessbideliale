@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+        <head>
+        <title>Log In and enjoy GuessBid!</title>
+    </head>
+    <body  style="background: no-repeat center center; background-size: 100% 100%;  background-image: url(images/sfondo_1.jpg);  width: 100%; height: 100%">
+          <div id='page'>
+                   <div id="guessBidLogo" style="position: absolute; top: 50px; right: 50px;">
+                        <a href='#'><img src="./images/logo.jpg" style="height: 100px; width: 150px" alt="logo"/>
+                        </a>
+                </div>
+            <div id='title' style="font-size: 30px; color: blue; font-family: cursive;" >
+                      <p> GuessBid</p>  <br />
+                <p> Place your bet! </p> 
+            </div>
+              <div id="login" style="background-color: cyan; position: absolute; top: 150px;
+                                    height: content-box; width: content-box; right: 350px; text-align: center;">
+                  <center>
+        <h:form> 
+            <panel header="Login Form">
+                <h:panelGrid columns="1">
+                     <f:facet name="header">
+                         <h:outputText value="Login"/>
+                         </f:facet>
+                 <h:outputLabel for="usernameInput" value="Username"/>
+                 <h:inputText id="usernameInput" value="#{LoginBean.username}" required="true" requiredMessage="Insert Username!" />
+                    <ajax placeholder="Insert your username" />
+                 <br/>
+                 
+                <p:outputLabel for="passwordInput" value="Password"/>
+                <p:inputText> <p:password id="passwordInput" value="#{LoginBean.password}" 
+                                required="true" requiredMessage="Insert Password!"/> </p:inputText>
+                        <ajax placeholder="Insert your password" />
+               <br/>
+               
+                
+                <f:facet name="footer">
+                                <h:panelGroup style="display:block; text-align:center">
+                               <p:commandButton id="submit" value="Login" action="#{LoginBean.login()}" ajax="true" update="@all"/>
+                                </h:panelGroup>
+                            </f:facet>
+                </h:panelGrid>
+                </panel>
+        </h:form>
+                      </center>
+                 </div>      
+            <div style="font-size: 25px; position: absolute; bottom:10px; left:42%; right:42%;" >
+                     <h:link outcome="index" value="Go back "  />
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <h:link outcome="registration" value="Register" />
+                     </div>
+                  
+       
+          </div>
+    </body>
+</html>

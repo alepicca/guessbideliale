@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+     <managed-bean>
+  <managed-bean-name>UserBean</managed-bean-name>
+  <managed-bean-class>picca_sartori.guessbid.gui.UserBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ 
+ <managed-bean>
+  <managed-bean-name>LoginBean</managed-bean-name>
+  <managed-bean-class>picca_sartori.guessbid.gui.LoginBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ 
+ <managed-bean>
+  <managed-bean-name>RegistrationBean</managed-bean-name>
+  <managed-bean-class>picca_sartori.guessbid.gui.RegistrationBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ 
+ <managed-bean>
+  <managed-bean-name>CreateAuctionBean</managed-bean-name>
+  <managed-bean-class>picca_sartori.guessbid.gui.CreateAuctionBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ 
+  <!-- <managed-bean>
+  <managed-bean-name>CreateItemBean</managed-bean-name>
+  <managed-bean-class>picca_sartori.guessbid.gui.CreateItemBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean> -->
+</faces-config> 
