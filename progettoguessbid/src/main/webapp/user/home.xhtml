@@ -54,6 +54,39 @@
 	.tfclear{
 		clear:both;
 	}
+        ul#menu {
+    font-family: Verdana, sans-serif;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+  
+ul#menu li {
+    background-color: #FF831C;
+    border-bottom: 5px solid #54BAE2;
+    display: block;
+    width: 150px;
+    height: 30px;
+    margin: 2px;
+    float: left; /* elementi su singola riga */
+}
+  
+ul#menu li a {
+    color: #fff;
+    display: block;
+    font-weight: bold;
+    line-height: 30px;
+    text-decoration: none;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+}
+  
+ul#menu li.active, ul#menu li:hover {
+    background-color: #54BAE2;
+    border-bottom: 5px solid #FF831C;
+}
 </style>
     </head>
     <body>
@@ -64,8 +97,8 @@
     <li><a href="./user/currentauction.xhtml">Current Auction</a></li>
     <li><a href="./user/notification.xhtml">Notification</a></li>
     <li><a href="./user/historical.xhtml">Historical</a></li>
-    <h:link outcome="createauction" value="create a new auction!" />
-    <li><a href="#">Logout</a></li> <!-- al posto di href fare metodo logout (prendere da qualche progetto vecchio -->
+    <li><a href="./user/createauction.xhtml"> Create a new auction! </a></li>
+    <li><a href="#{LoginBean.logout()}">Logout</a></li> 
     </ul>
                 <div id="tfheader" >
 		<form id="tfnewsearch" method="get" action="http://www.google.com"> <!-- action metodo di ricerca TODO -->
