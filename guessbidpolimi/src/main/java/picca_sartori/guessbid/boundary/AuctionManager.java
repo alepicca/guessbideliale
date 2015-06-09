@@ -26,7 +26,11 @@ public class AuctionManager {
     
     public void create(Auction auction) {
         em.persist(auction);
-       
+    }
+    
+    public Auction findAuctionById(int id) {
+        Auction a = em.createNamedQuery(Auction.findByAuctionid, Auction.class).setParameter("auctionid", id).getSingleResult();
+        return a;
     }
     
 }

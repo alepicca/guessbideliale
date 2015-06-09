@@ -3,7 +3,9 @@ package picca_sartori.guessbid.gui;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -15,7 +17,9 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
+import javax.servlet.http.HttpServletRequest;
 import picca_sartori.guessbid.boundary.AuctionManager;
+import picca_sartori.guessbid.boundary.UserManager;
 import picca_sartori.guessbid.control.CheckModifications;
 import picca_sartori.guessbid.entity.Auction;
 
@@ -32,16 +36,47 @@ public class CreateAuctionBean implements Serializable {
     @EJB
     private CheckModifications cm;
    
+    @EJB
+    private UserManager um;
+    
+    private static Map<String, String> mappa;
     private Auction auction, selectedauction;
     int auctionid;
-    private List <Auction> tutteleastevalide; //trovo il modo x passargli lista = em.createNamedQuery(Auction.findActive).getResultList();  
+    private List <Auction> tutteleastevalide; //em.createNamedQuery(Auction.findActive).getResultList();  
     
     public CreateAuctionBean() {
     }
     
     public void init() {
-        tutteleastevalide = new ArrayList<>();
+         tutteleastevalide = new ArrayList<>();
+        try {
+                FacesContext context = FacesContext.getCurrentInstance();
+                HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+                String s = request.getParameter("e");
+                if(s!= null){
+                    mappa.put(this.um.getLoggedUser().getUsername(), s);
+                }
+                else{
+                    s=mappa.get(this.um.getLoggedUser().getUsername());
+                }
+
+                int id = Integer.parseInt(s);
+                auction = am.findAuctionById(id);
+            } catch (Exception e) {
+//                FacesContext context;
+//                context = FacesContext.getCurrentInstance();
+//                context.addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "An error occurred"));
+            } 
+    /*    Date date = new Date();
+        
+    for (auctionid=1; auctionid<tutteleastevalide.size(); auctionid ++) {
+        if (date.before(auction.getExpdate())) {
+            tutteleastevalide.add(auction);
         }
+               }
+         */
+    }
+
     
     
       public Auction getAuction() {
@@ -60,6 +95,7 @@ public class CreateAuctionBean implements Serializable {
       }
 
       public List<Auction> getTutteleastevalide() {
+          List<Auction> tutteleastevalide = em.createNamedQuery(Auction.findByAll).getResultList(); // modifico query
           return tutteleastevalide;
       }
       
@@ -79,7 +115,7 @@ public class CreateAuctionBean implements Serializable {
     
     public String submit(){
         tutteleastevalide = em.createNamedQuery(Auction.findByAll).getResultList(); //moodifico query in modo che mi dia solo aste attive
-        return "currentauction.xhtml";
+       return "./user/currentauction.xhtml";
     }
     
     public void loadAuctionPage (Auction auction) {
