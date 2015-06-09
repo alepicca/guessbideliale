@@ -79,7 +79,7 @@ public class CreateAuctionBean implements Serializable {
     
     public String submit(){
         tutteleastevalide = em.createNamedQuery(Auction.findByAll).getResultList(); //moodifico query in modo che mi dia solo aste attive
-        return "./user/currentauction.xhtml";
+        return "currentauction.xhtml";
     }
     
     public void loadAuctionPage (Auction auction) {

@@ -93,12 +93,13 @@ ul#menu li.active, ul#menu li:hover {
         <div class="content">
             <div class="banner"> <h3> Welcome, #{LoginBean.username} </h3> </div>
             <div class="header"> <ul id="menu">
-          <li><a href="user/settings.xhtml">Settings</a></li>
+          <li><h:link outcome=home">Home Page</h:link></li>
+          <li><h:link outcome="settings">Settings</h:link></li>
           <li><a href="#{CreateAuctionBean.submit()}">Current Auction</a></li>
-    <li><a href="user/notification.xhtml">Notification</a></li>
-    <li><a href="user/historical.xhtml">Historical</a></li>
-    <li><a href="user/createauction.xhtml"> Create a new auction! </a></li>
-    <li><a href="#{LoginBean.logout()}">Logout</a></li> 
+    <li><h:link outcome="notification">Notification</h:link></li>
+    <li><h:link outcome="storico">Historical</h:link></li>
+    <li><h:link outcome="createauction"> Create a new auction! </h:link></li>
+    <!-- <li><a href="#{LoginBean.logout()}">Logout</a></li> -->
     </ul>
                 <div id="tfheader" >
 		<form id="tfnewsearch" method="get" action="http://www.google.com"> <!-- action metodo di ricerca TODO -->
