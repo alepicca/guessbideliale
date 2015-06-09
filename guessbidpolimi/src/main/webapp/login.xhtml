@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+        <head>
+        <title>Log In and enjoy GuessBid!</title>
+        <style type="text/css"> 
+           #logext  {
+               float:right;
+		padding:20px;
+                background-image:  url(images/sfondologin.jpg) ;
+                // background: no-repeat center center fixed;
+                background-size: cover;
+           }
+           .userinput {
+               margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		border:1px solid #0076a3; border-right:0px;
+		border-top-left-radius: 5px 5px;
+		border-bottom-left-radius: 5px 5px;
+           }
+           .pwdinput {
+               margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		border:1px solid #0076a3; border-right:0px;
+		border-top-left-radius: 5px 5px;
+		border-bottom-left-radius: 5px 5px;
+           }
+           .outlab {
+               margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		outline: none;
+		cursor: pointer;
+		text-align: center;
+		text-decoration: none;
+		color: #ffffff;
+		border: solid 1px #0076a3; border-right:0px;
+		background: #0095cd;
+		background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+		background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+		border-top-right-radius: 5px 5px;
+		border-bottom-right-radius: 5px 5px;
+           }
+           .outlab:hover {
+               text-decoration: none;
+		background: #007ead;
+		background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+		background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+           }
+           .outlab::-moz-focus-inner {
+               border: 0;
+           }
+           .boh {
+               clear:both;
+           }
+        </style>
+    </head>
+     <body  style="background: no-repeat center center fixed; background-size: cover;  background-image: url(images/sfondo_1.jpg);  width: 100%; height: 100%">
+        <div id='page'>
+            <div id="guessBidLogo" style="position: absolute; top: 50px; right: 50px;">
+                        <a href='#'><img src="./images/logo.jpg" style="height: 100px; width: 150px" alt="logo"/>
+                        </a>
+                </div>
+            <div id='title' style="font-size: 30px; color: black; font-family: cursive;" >
+                      <p> GuessBid</p>  <br />
+                <p> Place your bet! </p> 
+            </div>
+              <div id="login" style="position: absolute; top: 150px;
+                                    height: content-box; width: content-box; right: 350px; text-align: center;">
+                  <center>
+        <h:form id="logext"> 
+            <panel  header="Login Form">
+                <h:panelGrid columns="1">
+                     <f:facet name="header">
+                         <h:outputText value="Login"/>
+                         </f:facet>
+                    <h:outputLabel class="outlab" for="usernameInput" value="Username"/>
+                 <h:inputText class="userinput" id="usernameInput" value="#{LoginBean.username}" required="true" requiredMessage="Insert Username!" />
+                    <ajax placeholder="Insert your username" />
+                 <br/>
+                 
+                 <p:outputLabel class="outlab" for="passwordInput" value="Password"/>
+                <p:inputText> <p:password class="pwdinput" id="passwordInput" value="#{LoginBean.password}" 
+                                required="true" requiredMessage="Insert Password!"/> </p:inputText>
+                        <ajax placeholder="Insert your password" />
+               <br/>
+               
+                
+                <f:facet name="footer">
+                                <h:panelGroup style="display:block; text-align:center">
+                               <p:commandButton class="outlab" id="submit" value="Login" action="#{LoginBean.login()}" ajax="true" update="@all"/>
+                                </h:panelGroup>
+                            </f:facet>
+                </h:panelGrid>
+                </panel>
+        </h:form>
+                      <div class ="boh"> </div>
+                      </center>
+                 </div>      
+            <div style="font-size: 25px; position: absolute; bottom:10px; left:42%; right:42%;" >
+                     <h:link outcome="index" value="Go back "  />
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <h:link outcome="registration" value="Register" />
+                     </div>
+                  
+       
+          </div>
+    </body>
+</html>
