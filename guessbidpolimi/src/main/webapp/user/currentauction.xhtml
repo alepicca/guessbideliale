@@ -10,7 +10,7 @@
         <meta charset='UTF-8'/>
         <link href="./CSS/home.css" rel="stylesheet"></link>
         <style type="text/css">
-
+        
 	#tfnewsearch{
 		float:right;
 		padding:20px;
@@ -110,15 +110,20 @@ ul#menu li.active, ul#menu li:hover {
             <div class="body">  
                  <ui:composition>
             <h:form>  
-                <p:dataGrid var="auction" value="#{CreateAuctionBean.tutteleastevalide}" columns="3" emptyMessage="No auction found with these values" paginator="true" rows="10" styleClass="paginated" >  
+                <p:dataGrid style=" border-color: black; background: appworkspace "  var="auction" value="#{CreateAuctionBean.tutteleastevalide}" columns="3" emptyMessage="No auction found with these values" paginator="true" rows="10" styleClass="paginated" >  
                     <f:facet  name="header" >  
-                        <p:outputLabel value="Active Auctions:" style="font-size: 25px"/>
+                        <p:outputLabel  value="Active Auctions (Click on the auction title to bid):" style="font-size: 25px; background: appworkspace"/>
                     </f:facet>  
-                    <p:commandLink  action="#{CreateAuctionBean.loadAuctionPage(auction)}" title="View auction's details" style="float:left;margin-right:10px">
+                    <p:commandLink action="#{auctionBean.setAuctionid(auction.auctionid)}" title="View auction's details" style="float:left;margin-right:10px">
+                        <a href="auctioninfo.xhtml?auctionid=#{auction.auctionid}"> #{auction.title} </a>
                         <f:setPropertyActionListener value="#{auction}" target="#{CreateAuctionBean.selectedauction}" />
-                    <h:outputText value="#{auction.title}" />
+                        <f:param name="auctionid" value="#{auction.auctionid}" /> 
                     </p:commandLink>
-                   <h:outputText value="by #{auction.expdate} " style="display:inline-block"/>
+                    <h:outputText value="  #{auction.expdate} " style="display:inline-block"/>
+                    <br> </br>
+                    <h:outputText value="  #{auction.itemdescription} " style="display:inline-block"/>
+                    <br> </br>
+                    <h:outputText value="  #{auction.iteminfo}" style="display:inline-block"/>
                 </p:dataGrid>  
             </h:form> 
         </ui:composition>

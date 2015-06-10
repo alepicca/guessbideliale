@@ -118,13 +118,14 @@ public class CreateAuctionBean implements Serializable {
        return "./user/currentauction.xhtml";
     }
     
-    public void loadAuctionPage (Auction auction) {
-         try {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("auctioninfo.xhtml?e=" +auction.getAuctionid().toString());
-            } catch (IOException ex) {
-                Logger.getLogger(CreateAuctionBean.class.getName()).log(Level.SEVERE, null, ex);
-            }
+    public String loadAuctionPage (Auction auction) {
+        
+         return "/user/auctioninfo?faces-redirect=true";
         }
     
+     public Auction findAuctionById(int id) {
+        Auction a = em.createNamedQuery(Auction.findByAuctionid, Auction.class).setParameter("auctionid", id).getSingleResult();
+        return a;
+    }
        
     }

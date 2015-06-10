@@ -93,7 +93,7 @@ ul#menu li.active, ul#menu li:hover {
         <div class="content">
             <div class="banner"> <h3> Welcome, #{LoginBean.username} </h3> </div>
             <div class="header"> <ul id="menu">
-          <li><h:link outcome=home">Home Page</h:link></li>
+          <li><h:link outcome="home">Home Page</h:link></li>
           <li><h:link outcome="settings">Settings</h:link></li>
           <li><a href="#{CreateAuctionBean.submit()}">Current Auction</a></li>
     <li><h:link outcome="notification">Notification</h:link></li>
@@ -109,31 +109,40 @@ ul#menu li.active, ul#menu li:hover {
 	<div class="tfclear"></div>
 	</div>
             </div>
-                    <h1 style="text-align: center; font-size: 500%">#{CreateAuctionBean.auction.title}</h1>
-      
-        <div class="info" style="clear: both; margin-left: auto; margin-right: auto; width: 55%; font-size: 150%; height: 55%; overflow: auto;">
+            <div class="body">
+        <!--           
+     
+        <f:metadata>  
+            <f:viewParam name="auctionid" value="#{AuctionBean.auctionid}" /> 
+        </f:metadata> -->
+                    <br />
+                <h:form>
+            <p:panel id="external"  >
+                <h1 style="text-align: center; font-size: 500%">#{AuctionBean.findByAuctionId().title}</h1>
+   
             <div style="float: left; width: 47%">
                 
                 <ul>
                     <li>
-                        <b>Description of the item:</b> #{CreateAuctionBean.auction.itemdescription}
+                        <b>Description of the item:</b> #{auctionBean.auction.itemdescription}
                     </li>
                     <li>
-                        <b>More info about the item:</b> #{CreateAuctionBean.auction.iteminfo}
+                        <b>More info about the item:</b> #{auctionBean.auction.iteminfo}
                     </li>
                     <li>
-                        <b>Expiration Date</b> #{CreateAuctionBean.auction.expdate}
-                    </li>
-                    <li>
-                        <b>Photo of the item</b> #{AuctionBean.auction.itemphoto}
+                        <b>Expiration Date</b> #{auctionBean.auction.expdate}
                     </li>
                 </ul>
         </div>
-        <div style="clear: both; width: 300px; margin-left: 55%; margin-right: auto; margin-top: 1%">
                 <h:panelGrid id="eventDetails" columns="2">
-                    <p:commandLink value="Bid if you want to win this object" action="#{UserBean.gotobid()}"/>
+                    <h:link outcome="insertbid"  value="Bid if you want to win this object" />
                 </h:panelGrid>
-        </div> 
+            </p:panel>
+                    </h:form>
+        
+            <div class="footer"> <h4> Tavava productions, all rights reserved </h4> </div>
+         
+        </div>
         </div>
     </body>
 </html>
