@@ -96,8 +96,8 @@ ul#menu li.active, ul#menu li:hover {
     <li><a href="home.xhtml">Home Page</a></li>
     <li><a href="settings.xhtml">Settings</a></li>
     <li><a href="notification.xhtml">Notification</a></li>
-    <li><a href="#{CreateAuctionBean.submit()}">Current Auction</a></li>
-    <!-- <li><a href="#{LoginBean.logout()}">Logout</a></li> -->
+     <li><h:link  outcome="currentauction">Current Auction</h:link></li>
+    <li><a href="#{LoginBean.logout()}">Logout</a></li>
     </ul>
                 <div id="tfheader" >
 		<form id="tfnewsearch" method="get" action="http://www.google.com"> <!-- action metodo di ricerca TODO -->
@@ -108,7 +108,7 @@ ul#menu li.active, ul#menu li:hover {
 	</div>
             </div>
             <div class="body">  
-                <ui:composition>
+                <h1> welcome #{LoginBean.username} </h1>
             <h:form>  
                 <p:dataGrid var="auction" value="#{HistoricalBean.historical}" columns="3" emptyMessage="No auction found with these values" paginator="true" rows="10" styleClass="paginated" >  
                     <f:facet  name="header" >  
@@ -120,10 +120,6 @@ ul#menu li.active, ul#menu li:hover {
                     </p:column>
                 </p:dataGrid>  
             </h:form> 
-        </ui:composition>
-                
-                
-                
                 </div>
             <div class="footer"> <h4> Tavava productions, all rights reserved </h4> </div>
         </div>

@@ -4,11 +4,13 @@ import java.io.Serializable;
 import picca_sartori.guessbid.entity.Groups;
 import picca_sartori.guessbid.entity.Users;
 import java.security.Principal;
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 import picca_sartori.guessbid.gui.CreateAuctionBean;
 import picca_sartori.guessbid.gui.LoginBean;
 import picca_sartori.guessbid.gui.UserBean;
@@ -43,6 +45,7 @@ public class UserManager implements Serializable {
     public Users getLoggedUser() {
         return em.find(Users.class, principal.getName());
     }
+    
     
      public void changeData(Users usertoupdate) {
         //se gira bene, se no faccio partire la transazione e il commit manualmente

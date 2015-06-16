@@ -44,12 +44,15 @@ public class BidBean implements Serializable{
     private AuctionManager am;
     
     private Bid bid;
-    private int amount;
+    private int amount,auctionid;
     
     public BidBean() {
     }
    
-   
+    public Integer getAuctionid() {
+       return auctionid;
+   }
+    
    public Bid getBid() {
            if (bid== null) {
        bid = new Bid();
@@ -65,20 +68,29 @@ public class BidBean implements Serializable{
        return amount;
    }
    
-   public void scommetti (int amount) {
-       FacesContext context = FacesContext.getCurrentInstance();
+   public void scommetti (String user, Integer idasta, Integer importo) {
+     //  FacesContext context = FacesContext.getCurrentInstance();
+       Bid scommessa = new Bid();
+       scommessa.setAuctionid(idasta);
+        scommessa.setBidder(user);
+        scommessa.setAmount(importo);
         try {
-            int puntata = bm.create(um.getLoggedUser(), ab.getAuction(), amount);
-           if (puntata == LegendaAsta.SCOMMESSAFATTA) {
+            int puntata = bm.createbid(scommessa); //bidder ab.getAuction()
+         /*  if (puntata == LegendaAsta.SCOMMESSAFATTA) {
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, bid +" bid succesfully placed", "Placed bid"));
             } else if (puntata == LegendaAsta.CREDITOINSUFF) {
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Insufficient credit", "Insufficient credit"));
             }
-
+*/
         } catch (NumberFormatException e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "The input is not a number", "NaN"));
+         //   context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "The input is not a number", "NaN"));
         }
 
+    }
+   
+    public Users findByUsername(String username) {
+        Users u = em.createNamedQuery(Users.findByUsername, Users.class).setParameter("username", username).getSingleResult();
+        return u;
     }
    }
 

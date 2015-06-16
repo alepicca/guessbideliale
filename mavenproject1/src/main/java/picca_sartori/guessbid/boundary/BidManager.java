@@ -1,6 +1,8 @@
 package picca_sartori.guessbid.boundary;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -23,16 +25,15 @@ public class BidManager {
         return em.find(Users.class, principal.getName());
     }
     
-     public int create(Users user, Auction auction, int importo) {
-         Bid bid = new Bid();
-         if (user.getBalance() < 2) {
-            return LegendaAsta.CREDITOINSUFF;
-        }
-         bid.setAmount(importo);
-        bid.setBidder(user);
-        bid.setAuctionid(auction);
+     public int createbid(Bid bid) { //Users user, Auction auction
+       // if (user.getBalance() < 2) {
+         //  return LegendaAsta.CREDITOINSUFF;
+      //  }
+       //  else{
+      // 
          em.persist(bid);
-         user.setBalance(-2);
+       // user.setBalance(user.getBalance() -2); 
+       //  }
          try {
             em.flush();
             //fare notifiche
@@ -46,4 +47,26 @@ public class BidManager {
         Bid b = em.createNamedQuery(Bid.findByBidid, Bid.class).setParameter("bidid", id).getSingleResult();
         return b;
     }
+    
+    public List<Bid> findByAuction(int id) {
+		List<Bid> bids = em.createQuery("SELECT * FROM bid WHERE b.auctionid=:auctionid")
+				.setParameter("auctionid", id)
+			    .getResultList();
+		List<Bid> scomm= new ArrayList<Bid> ();
+		for (Bid bid : bids) {
+		 scomm.add(bid);
+		}
+		return scomm;
+    }
+    
+    public List<Bid> findByUser(String username) {
+		List<Bid> bids = em.createQuery("SELECT * FROM bid WHERE b.username=:username")
+				.setParameter("username", username)
+			    .getResultList();
+		List<Bid> scomm= new ArrayList<Bid> ();
+		for (Bid bid : bids) {
+			scomm.add(bid);
+		}
+		return scomm;
+	}
 }

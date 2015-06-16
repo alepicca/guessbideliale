@@ -51,16 +51,16 @@ public class Bid implements Serializable{
     @Column(name = "amount")
     private int amount;
     
-    @ManyToOne
-    @JoinColumn(name="bidder", referencedColumnName="username")
+   // @ManyToOne
+   // @JoinColumn(name="bidder", referencedColumnName="username")
     @Pattern(regexp = "^[a-z0-9A-Z_]{5,25}$", message = "invalid username")
     @NotNull(message = "May not be empty")
-    private Users bidder;
+    private String bidder;
     
-    @ManyToOne
-    @JoinColumn(name="auctionid", referencedColumnName="auctionid")
+   // @ManyToOne
+   // @JoinColumn(name="auctionid", referencedColumnName="auctionid")
     @NotNull(message = "May not be empty")
-    private Auction auctionid;
+    private Integer auctionid;
     
     private boolean winning;
     
@@ -71,18 +71,21 @@ public class Bid implements Serializable{
         this.bidid = bidid;
     }
 
-    public Bid(Auction auctionid, Integer bidid, Users bidder, int amount) {
+    public Bid(Integer auctionid, Integer bidid, String bidder, int amount) {
         this.auctionid = auctionid;
         this.bidid = bidid;
         this.bidder = bidder;
         this.amount = amount;
     }
     
-    public Auction getAuctionid() {
+   
+    
+    
+    public Integer getAuctionid() {
         return auctionid;
     }
 
-    public void setAuctionid(Auction auctionid) {
+    public void setAuctionid(Integer auctionid) {
         this.auctionid = auctionid;
     } 
     
@@ -102,11 +105,11 @@ public class Bid implements Serializable{
         this.amount = amount;
     } 
     
-    public Users getBidder() {
+    public String getBidder() {
         return bidder;
     }
 
-    public void setBidder(Users bidder) {
+    public void setBidder(String bidder) {
         this.bidder = bidder;
     }
     

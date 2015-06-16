@@ -10,6 +10,23 @@
         <meta charset='UTF-8'/>
         <link href="./CSS/home.css" rel="stylesheet"></link>
         <style type="text/css">
+            #bid{
+                margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		outline: none;
+		cursor: pointer;
+		text-align: center;
+		text-decoration: none;
+		color: #ffffff;
+		border: solid 1px #0076a3; border-right:0px;
+		background: #0095cd;
+		background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+		background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+		border-top-right-radius: 5px 5px;
+		border-bottom-right-radius: 5px 5px;
+            }
 
 	#tfnewsearch{
 		float:right;
@@ -88,6 +105,9 @@ ul#menu li.active, ul#menu li:hover {
     border-bottom: 5px solid #FF831C;
 }
 </style>
+         <f:metadata>
+             <f:viewParam name="id" value="#{BidBean.bid.auctionid}" />
+        </f:metadata>
     </head>
     <body>
         <div class="content">
@@ -95,7 +115,7 @@ ul#menu li.active, ul#menu li:hover {
             <div class="header"> <ul id="menu">
                     <li><h:link outcome="home">HomePage</h:link></li>
     <li><h:link outcome="settings">Settings</h:link></li>
-          <li><a href="#{CreateAuctionBean.submit()}">Current Auction</a></li>
+          <li><h:link  outcome="currentauction">Current Auction</h:link></li>
     <li><h:link outcome="notification">Notification</h:link></li>
     <li><h:link outcome="historical">Historical</h:link></li>
      <li><a href="#{LoginBean.logout()}">Logout</a></li> 
@@ -109,18 +129,18 @@ ul#menu li.active, ul#menu li:hover {
 	</div>
             </div>
             <div class="body">
-               <ui:fragment rendered="${!detailsAuctionBean.loggedUserIsSeller() and !detailsAuctionBean.isAuctionFinished()}">
-            <h:form id="bidForm">  
-                <p:inputText id="bid" value="#{bidBean.amount}" autocomplete="false" required="true" requiredMessage="Please input a valid number with up to 2 decimal places"
-                             >
-                </p:inputText> 
-                <p:commandButton   value="#{BidBean.scommetti(amount)}" update="@form">
+                <h1> Insert your bid for the selected auction!  </h1>
+                <h:form id="bidForm" style="width: box;height:box">
+                <fieldset>
+                    <label style="width:45px" class="outlab" >Insert Amount</label>
+                <p:inputText id="bid" placeholder="insert the amount of your bid" value="#{BidBean.bid.amount}" autocomplete="false" required="true" requiredMessage="Please input a valid number" />
+                </fieldset>
+                <p:commandButton action="#{BidBean.scommetti(LoginBean.username, BidBean.bid.auctionid, BidBean.bid.amount)}" value="Place the bid!" update="@form">
                 </p:commandButton>
                 <p:messages id="bidMessages" showIcon="false" />
             </h:form>  
-        </ui:fragment>
-            <div class="footer"> <h4> Tavava productions, all rights reserved </h4> </div>
-        </div>
-        </div>
+                </div>
+        <div class="footer" > <h4> Tavava productions, all rights reserved </h4> </div>
+            </div>
     </body>
 </html>

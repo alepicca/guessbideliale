@@ -20,7 +20,7 @@ import picca_sartori.guessbid.entity.Users;
 
 @Named
 @ApplicationScoped
-public class LoginBean {
+public class LoginBean implements Serializable{
     
     @PersistenceContext
     private EntityManager em;
@@ -28,7 +28,7 @@ public class LoginBean {
     @Inject
     private Logger logger;
     
-    private String username;
+    public  String username;
     private String password;
     private String credenziale;
     private HttpSession sessionlogin;
@@ -37,7 +37,7 @@ public class LoginBean {
     }
 
     public String getUsername() {
-        return this.username;
+        return username;
     }
 
     public void setUsername(String username) {
@@ -80,8 +80,8 @@ public class LoginBean {
         this.credenziale = credenziale;
     }
     
-    public Users findByUsername (String credenziale) {
-        Users utente = em.createNamedQuery(Users.findByUsername, Users.class).setParameter("username", credenziale).getSingleResult();
+    public Users findByUsername (String username) {
+        Users utente = em.createNamedQuery(Users.findByUsername, Users.class).setParameter("username", username).getSingleResult();
         return utente;
     }    
     

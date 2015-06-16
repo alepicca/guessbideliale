@@ -147,7 +147,7 @@ ul#menu li.active, ul#menu li:hover {
             <div class="header"> <ul id="menu">
         <li><h:link outcome="home">HomePage</h:link></li>
     <li><h:link outcome="settings">Settings</h:link></li>
-          <li><a href="#{CreateAuctionBean.submit()}">Current Auction</a></li>
+           <li><h:link  outcome="currentauction">Current Auction</h:link></li>
     <li><h:link outcome="notification">Notification</h:link></li>
     <li><h:link outcome="historical">Historical</h:link></li>
     <li><a href="#{LoginBean.logout()}">Logout</a></li>
@@ -197,8 +197,8 @@ ul#menu li.active, ul#menu li:hover {
                   <p:commandButton class="outlab" action="#{CreateAuctionBean.creaasta(LoginBean.username)}" value="CREATE THE AUCTION" ajax="true" update="@all" />
                 </p:panel>
                     </h:form>
+                </div>
             <div class="footer"> <h4> Tavava productions, all rights reserved </h4> </div>
-        </div>
         </div>
     </body>
 </html>

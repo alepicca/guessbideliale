@@ -91,7 +91,7 @@ ul#menu li.active, ul#menu li:hover {
     </head>
     <body>
         <div class="content">
-            <div class="banner" id="banner"> </div>
+            <div class="banner" id="banner"> <h3> Welcome, #{LoginBean.username} </h3> </div>
             <div class="header"> <ul id="menu">
     <li><h:link outcome="home">Home Page</h:link></li>
     <li><h:link outcome="settings">Settings</h:link></li>
@@ -107,26 +107,25 @@ ul#menu li.active, ul#menu li:hover {
 	<div class="tfclear"></div>
 	</div>
             </div>
-            <div class="body">  
-                 <ui:composition>
-            <h:form>  
-                <p:dataGrid style=" border-color: black; background: appworkspace "  var="auction" value="#{CreateAuctionBean.tutteleastevalide}" columns="3" emptyMessage="No auction found with these values" paginator="true" rows="10" styleClass="paginated" >  
-                    <f:facet  name="header" >  
-                        <p:outputLabel  value="Active Auctions (Click on the auction title to bid):" style="font-size: 25px; background: appworkspace"/>
+            <div class="body" style="  border:solid 1px tan;">  
+         <h:form style="border:solid 1px tan; background: no-repeat center center fixed">  
+                <p:dataGrid  style=" border: solid 1px tan; border-color: black; background: appworkspace "  var="auction" value="#{CreateAuctionBean.tutteleastevalide}" columns="3" emptyMessage="No auction found with these values" paginator="true" rows="10" styleClass="paginated" >  
+                    <f:facet  name="header"  >  
+                        <p:outputLabel   value="Active Auctions (Click on the auction title to bid):" style="font-size: 25px; background: appworkspace"/>
                     </f:facet>  
-                    <p:column headerText="Event Name" class="col-sm-3" style="text-align: right"> 
-                        <a href="auctioninfo.xhtml?auctionid=#{auction.auctionid}"> #{auction.title} </a> 
+                    <p:column   headerText="Event Name" class="col-sm-3" style="text-align: right; font-weight: bold; background-color: Tan;"> 
+                        <h:link outcome="insertbid.xhtml"> #{auction.title} 
                          <f:param  name="id" value="#{auction.auctionid}"/>
+                        </h:link>
                     </p:column>
-                    <p:column headerText="Item Description" class="col-sm-3">#{auction.itemdescription}</p:column>
-                            <p:column headerText="Item info" class="col-sm-1">#{auction.iteminfo}</p:column>
+                    <br> </br>
+                    <p:column style="font-weight: bold; background-color: Tan;" headerText="Item Description" class="col-sm-3">#{auction.itemdescription}</p:column>
+                      <br> </br>
+                    <p:column headerText="Item info" class="col-sm-1">#{auction.iteminfo}</p:column>
+                    <br> </br>
                     <p:column headerText="Expiration Date" class="col-sm-3">#{auction.expdate}</p:column>
                 </p:dataGrid>  
             </h:form> 
-        </ui:composition>
-                
-                
-                
                 </div>
             <div class="footer"> <h4> Tavava productions, all rights reserved </h4> </div>
         </div>

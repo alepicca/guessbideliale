@@ -99,7 +99,7 @@ ul#menu li.active, ul#menu li:hover {
             <div class="header"> <ul id="menu">
           <li><h:link outcome="home">Home Page</h:link></li>
           <li><h:link outcome="settings">Settings</h:link></li>
-          <li><a href="#{CreateAuctionBean.submit()}">Current Auction</a></li>
+          <li><h:link  outcome="currentauction">Current Auction</h:link></li>
     <li><h:link outcome="notification">Notification</h:link></li>
     <li><h:link outcome="historical">Historical</h:link></li>
     <li><h:link outcome="createauction"> Create a new auction! </h:link></li>
@@ -114,10 +114,6 @@ ul#menu li.active, ul#menu li:hover {
 	</div>
             </div>
             <div class="body">
-               
-     
-        
-                    <br />
                 <h:form>
             <p:panel id="external"  >
                 <h1 style="text-align: center; font-size: 500%">#{auctionBean.auction.title}</h1>
@@ -142,8 +138,8 @@ ul#menu li.active, ul#menu li:hover {
             </p:panel>
                     </h:form>
         
-            <div class="footer"> <h4> Tavava productions, all rights reserved </h4> </div>
-         
+             </div>
+         <div class="footer"> <h4> Tavava productions, all rights reserved </h4>
         </div>
         </div>
     </body>

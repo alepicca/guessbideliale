@@ -4,7 +4,8 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>jdbc/guessbid</jta-data-source>
    <validation-mode> NONE </validation-mode> 
-  <!-- <class>picca_sartori.guessbid.entity.Users</class>
+   
+  <!--<class>picca_sartori.guessbid.entity.Users</class>
     <class>picca_sartori.guessbid.entity.Auction</class>
     <class>picca_sartori.guessbid.entity.Bid</class>
     <class>picca_sartori.guessbid.entity.Item</class>

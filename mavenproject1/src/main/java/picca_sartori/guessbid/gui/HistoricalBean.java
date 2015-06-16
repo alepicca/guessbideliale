@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,6 +25,9 @@ public class HistoricalBean implements Serializable {
     @EJB
     private UserManager um;
     
+    @ManagedProperty(value = "#{LoginBean}")
+    private LoginBean lb;
+    
      private List <Auction> historical;
      private static Map<String, String> mappainit;
      public Auction auction;
@@ -31,7 +35,7 @@ public class HistoricalBean implements Serializable {
       public HistoricalBean() {
     }
     
-    public void init() {
+   /* public void init() {
          historical = new ArrayList<>();
         try {
                 FacesContext context = FacesContext.getCurrentInstance();
@@ -44,17 +48,20 @@ public class HistoricalBean implements Serializable {
                     s=mappainit.get(this.um.getLoggedUser().getUsername());
                 }
 
-               /* int id = Integer.parseInt(s);
-                auction = am.findAuctionById(id);*/
+                int id = Integer.parseInt(s);
+                auction = am.findAuctionById(id);
             } catch (Exception e) {
 //                FacesContext context;
 //                context = FacesContext.getCurrentInstance();
-//                context.addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "An error occurred"));
+//              context.addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "An error occurred"));
             } 
     }
+
+*/
     
-     public List<Auction> getHistorical() {
-          List<Auction> historical = em.createNamedQuery(Bid.findHistorical).setParameter("bidder", um.getLoggedUser()).getResultList(); 
+
+     public List<Integer> getHistorical() {
+          List<Integer> historical = em.createNamedQuery(Bid.findHistorical).setParameter("bidder", "eliseo").getResultList(); 
           return historical;
       }
       
