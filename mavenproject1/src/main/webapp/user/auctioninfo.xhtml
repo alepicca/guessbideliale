@@ -89,8 +89,7 @@ ul#menu li.active, ul#menu li:hover {
 }
 </style>
         <f:metadata>
-            <f:viewParam name="id" value="#{auctionBean.auctionid}" />
-            <f:event type="preRenderView" listener="#{auctionBean.loadAuction()}" />
+            <f:viewParam name="id" value="#{auctionBean.auction.auctionid}" />
         </f:metadata>
     </head>
     <body>

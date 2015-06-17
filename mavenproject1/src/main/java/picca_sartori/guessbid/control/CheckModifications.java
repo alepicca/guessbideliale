@@ -1,11 +1,12 @@
 package picca_sartori.guessbid.control;
 
 //import picca_sartori.guessbid.entity.Auction;
-//creare entità auction
+//creare entitï¿½ auction
 import picca_sartori.guessbid.entity.Users;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 /**
  *
  * @author ale
@@ -14,8 +15,8 @@ import javax.persistence.EntityManager;
 @Stateless
 public class CheckModifications {
     
+    @PersistenceContext
     EntityManager em;
-    
     
    
     //no doppioni username nel db: ritorna vero
@@ -48,13 +49,4 @@ public class CheckModifications {
      public boolean checkCorrectAge(String age){
              return age.matches("^[0-9]*${2,3})$");
     }
-    
-  /*  public boolean checkDoubleAuctionName(String auctionname){
-        List<Auction> result = em.createNamedQuery(Auction.findByAuctionName, Auction.class)
-                  .setParameter("auctionname", auctionname)
-                   .getResultList();
-            return result.isEmpty()==true;
-    }
-    SISTEMARE METODO (PASSAGGIO DA EVENT A AUCTION
-    */ 
 }

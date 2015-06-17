@@ -25,15 +25,8 @@ public class BidManager {
         return em.find(Users.class, principal.getName());
     }
     
-     public int createbid(Bid bid) { //Users user, Auction auction
-       // if (user.getBalance() < 2) {
-         //  return LegendaAsta.CREDITOINSUFF;
-      //  }
-       //  else{
-      // 
+     public int createbid(Bid bid) { 
          em.persist(bid);
-       // user.setBalance(user.getBalance() -2); 
-       //  }
          try {
             em.flush();
             //fare notifiche

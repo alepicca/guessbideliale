@@ -12,6 +12,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -109,6 +110,8 @@ public class CreateAuctionBean implements Serializable {
     public String creaasta(String user){
         auction.setCreator(user);
         am.create(auction);
+        FacesContext context = FacesContext.getCurrentInstance();
+            
         return "/user/home";
     }
     

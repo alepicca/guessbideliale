@@ -108,12 +108,12 @@ ul#menu li.active, ul#menu li:hover {
 	</div>
             </div>
             <div class="body" style="  border:solid 1px tan;">  
-         <h:form style="border:solid 1px tan; background: no-repeat center center fixed">  
-                <p:dataGrid  style=" border: solid 1px tan; border-color: black; background: appworkspace "  var="auction" value="#{CreateAuctionBean.tutteleastevalide}" columns="3" emptyMessage="No auction found with these values" paginator="true" rows="10" styleClass="paginated" >  
+         <h:form  style="border:solid 1px tan; background: no-repeat center center fixed">  
+             <p:dataGrid   paginatorPosition="bottom" style=" border: solid 1px tan; border-color: black; background: appworkspace "  var="auction" value="#{CreateAuctionBean.tutteleastevalide}"  columns="3" emptyMessage="No auction found with these values" paginator="true"  rows="10" styleClass="paginated" >  
                     <f:facet  name="header"  >  
                         <p:outputLabel   value="Active Auctions (Click on the auction title to bid):" style="font-size: 25px; background: appworkspace"/>
                     </f:facet>  
-                    <p:column   headerText="Event Name" class="col-sm-3" style="text-align: right; font-weight: bold; background-color: Tan;"> 
+                    <p:column   headerText="Auction Name" class="col-sm-3" style="text-align: right; font-weight: bold; background-color: Tan;"> 
                         <h:link outcome="insertbid.xhtml"> #{auction.title} 
                          <f:param  name="id" value="#{auction.auctionid}"/>
                         </h:link>
