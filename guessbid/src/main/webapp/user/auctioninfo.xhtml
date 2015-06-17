@@ -89,7 +89,7 @@ ul#menu li.active, ul#menu li:hover {
 }
 </style>
         <f:metadata>
-            <f:viewParam name="id" value="#{auctionBean.auction.auctionid}" />
+            <f:viewParam name="parametro" value="#{HistoricalBean.auction.auctionid}" />
         </f:metadata>
     </head>
     <body>
@@ -113,6 +113,7 @@ ul#menu li.active, ul#menu li:hover {
 	</div>
             </div>
             <div class="body">
+                <h1> #{HistoricalBean.auction.auctionid} </h1>
                 <h:form>
             <p:panel id="external"  >
                 <h1 style="text-align: center; font-size: 500%">#{auctionBean.auction.title}</h1>

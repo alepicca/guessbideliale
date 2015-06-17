@@ -108,15 +108,21 @@ ul#menu li.active, ul#menu li:hover {
 	</div>
             </div>
             <div class="body">  
-                <h1> welcome #{LoginBean.username} </h1>
             <h:form>  
-                <p:dataGrid var="auction" value="#{HistoricalBean.historical}" columns="3" emptyMessage="No auction found with these values" paginator="true" rows="10" styleClass="paginated" >  
+                <p:dataGrid style="font-family:cursive; background-color: activeborder" var="auction" value="#{HistoricalBean.historical}" columns="3" emptyMessage="No auction found with these values" paginator="true" rows="10" styleClass="paginated" >  
                     <f:facet  name="header" >  
-                        <p:outputLabel value="Your Historical:" style="font-size: 25px"/>
+                        <p:outputLabel value="Your Historical (All action you have bid for):" style="font-size: 25px; font-family: cursive"/>
                     </f:facet>  
-                    <p:column headerText="Event Name" class="col-sm-3" style="text-align: right"> 
-                        <a href="auctioninfo.xhtml?auctionid=#{auction.auctionid}"> #{auction.title} </a> 
-                         <f:param  name="id" value="#{auction.auctionid}"/>
+                    <p:column  headerText="Event Name" class="col-sm-3" style="text-align: right; font-family: cursive"> 
+                      TITLE OF THE AUCTION:   #{auction.title}
+                    </p:column >
+                    <br> </br>
+                    <p:column style="font-family: cursive">
+                      DESCRIPTION OF THE AUCTIONED OBJECT:  #{auction.itemdescription}
+                    </p:column>
+                    <br> </br>
+                     <p:column style="font-family: cursive">
+                       WINNER OF THE AUCTION (IF NO WINNER DISPLAYED THE AUCTION IS NOT YET EXPIRED! GO IN THE "CURRENT AUCTIONS" PAGE AND BID FOR IT #{auction.definitivewinner} 
                     </p:column>
                 </p:dataGrid>  
             </h:form> 

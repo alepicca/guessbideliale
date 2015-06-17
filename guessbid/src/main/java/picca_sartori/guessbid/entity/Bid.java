@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery (name= "bid.findByBidid", query= "SELECT b FROM bid b WHERE b.bidid  = :bidid"),
     @NamedQuery (name = "bid.findByBidder", query = "SELECT b FROM bid b WHERE b.bidder = :bidder"),
     @NamedQuery(name = "bid.findPerdenti", query = "SELECT DISTINCT(b.bidder) FROM bid b WHERE b.auctionid = :auctionid and b.bidder != :bidder "),
-    @NamedQuery(name="bid.findHistorical", query = "SELECT DISTINCT (b.auctionid) FROM bid b WHERE b.bidder = :bidder"),  //and date = finished
+    @NamedQuery(name="bid.findHistorical", query = "SELECT DISTINCT a FROM bid b JOIN auction a on b.auctionid = a.auctionid WHERE b.bidder = :bidder"),  //and date = finished
     @NamedQuery (name = "bid.findWinning", query = "SELECT b FROM bid b WHERE b.bidder = :bidder and b.auctionid = :auctionid ORDER BY b.amount"),
     @NamedQuery (name = "bid.findNumMinBid", query = "SELECT b.bidid, min(b.amount) FROM bid b WHERE b.auctionid = :auctionid"),
     @NamedQuery (name = "bid.contascommesseasta", query = "SELECT COUNT (b) FROM bid b WHERE b.auctionid = :auctionid"),

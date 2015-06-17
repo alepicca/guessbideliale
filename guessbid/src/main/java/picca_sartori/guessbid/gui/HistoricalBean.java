@@ -60,8 +60,8 @@ public class HistoricalBean implements Serializable {
 */
     
 
-     public List<Integer> getHistorical() {
-          List<Integer> historical = em.createNamedQuery(Bid.findHistorical).setParameter("bidder", "eliseo").getResultList(); 
+     public List<Auction> getHistorical() {
+          List<Auction> historical = em.createNamedQuery(Bid.findHistorical).setParameter("bidder", "eliseo").getResultList(); 
           return historical;
       }
       

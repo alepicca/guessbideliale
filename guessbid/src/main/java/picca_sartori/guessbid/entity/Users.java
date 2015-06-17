@@ -36,7 +36,7 @@ public class Users implements Serializable {
     @Id
     @Pattern(regexp = "^[a-z0-9A-Z_]{5,25}$", message = "invalid username")
     @NotNull(message = "May not be empty")
-    @Column(name="Username")
+    @Column(name="username")
     private String username;
     
     @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
@@ -44,7 +44,7 @@ public class Users implements Serializable {
     @NotNull(message = "May not be empty")
     private String email;
     
-    @Pattern(regexp="^[a-z0-9A-Z_-!@#+*|]*$",
+    @Pattern(regexp="^[a-z0-9A-Z_-טיעלחאש!@#+*|]*$",
             message="You inserted an invalid character")
     @NotNull(message = "May not be empty")
     private String password;
