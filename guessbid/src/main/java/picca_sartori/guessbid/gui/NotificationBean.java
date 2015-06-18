@@ -78,12 +78,12 @@ public class NotificationBean {
       }
 
       public List<Notification> getFineasta() {
-          List<Notification> fineasta = em.createNamedQuery(Notification.findByCategory).setParameter("receiver", um.getLoggedUser()).setParameter("notiftype", Notification.Notiftype.ENDAUCTION).getResultList();
+          List<Notification> fineasta = em.createNamedQuery(Notification.findByCategory).setParameter("receiver", "eliseo").setParameter("notiftype", Notification.Notiftype.ENDAUCTION).getResultList();
           return fineasta;
       }
       
       public List<Notification> getCambiopos() {
-          List<Notification> cambioposizione = em.createNamedQuery(Notification.findByCategory).setParameter("receiver", um.getLoggedUser()).setParameter("notiftype", Notification.Notiftype.CHANGEPOSITION).getResultList();
+          List<Notification> cambioposizione = em.createNamedQuery(Notification.findByCategory).setParameter("receiver", "eliseo").setParameter("notiftype", Notification.Notiftype.CHANGEPOSITION).getResultList();
           return cambioposizione;
       }
       

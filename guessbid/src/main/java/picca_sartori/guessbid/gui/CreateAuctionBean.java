@@ -3,6 +3,7 @@ package picca_sartori.guessbid.gui;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +49,7 @@ public class CreateAuctionBean implements Serializable {
     private static Map<String, String> mappa;
     private Map<String, String> parametri;
     private Auction auction, selectedauction, ciao;
+    private Date date;
     int auctionid;
     private List <Auction> tutteleastevalide; //em.createNamedQuery(Auction.findActive).getResultList();  
     
@@ -95,7 +97,13 @@ public class CreateAuctionBean implements Serializable {
       }
 
       public List<Auction> getTutteleastevalide() {
-          List<Auction> tutteleastevalide = em.createNamedQuery(Auction.findByAll).getResultList(); // modifico query
+          Calendar today = Calendar.getInstance();
+          today.set(Calendar.HOUR_OF_DAY,0);
+          today.set(Calendar.MINUTE, 0);
+          today.set(Calendar.SECOND, 0);
+          Date date = today.getTime();
+           System.out.println(date);
+          List<Auction> tutteleastevalide = em.createNamedQuery(Auction.findActive).setParameter("expdate", date).getResultList(); // modifico query
           return tutteleastevalide;
       }
       

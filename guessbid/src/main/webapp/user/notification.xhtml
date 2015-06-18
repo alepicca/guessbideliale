@@ -118,12 +118,11 @@ ul#menu li.active, ul#menu li:hover {
                     </f:facet>
                     <p:commandLink update=":fineasta:endform:fineastadetail" oncomplete="PF('fineastadialog').show()" title="View Detail" style="float:left;margin-right:10px">
                         <f:setPropertyActionListener value="#{fineasta}" target="#{NotificationBean.fineasta}" />
-                        <h:outputText value="#{fineasta.auctionid.title}" />
+                        <h:outputText value="#{fineasta.auctionid}" />
                     </p:commandLink>
-                    <h:outputText value=" by: #{fineasta.auctionid.title}" style="display:inline-block"/>
+                    <h:outputText value=" by: #{fineasta.auctionid}" style="display:inline-block"/>
                     <h:link  outcome="auctioninfo.xhtml" >
-                        <f:param  name="id" value="#{NotificationBean.notification.auctionid.auctionid}"/>
-                                <h:outputText  value="#{NotificationBean.notification.auctionid.title}" style="font-weight: 700; "  />
+                        <f:param  name="id" value="#{NotificationBean.notification.auctionid}"/>
                             </h:link> 
                 </p:dataList>
                 <p:dialog id="fineastadialog" header="End Auction Info" widgetVar="fineastadialog" modal="true" showEffect="blind" hideEffect="explode" resizable="false">
@@ -148,13 +147,12 @@ ul#menu li.active, ul#menu li:hover {
                     </f:facet>
                     <p:commandLink update=":cambiopos:changeform:changedetail" oncomplete="PF('modifyDialog').show()" title="View Detail" style="float:left;margin-right:10px">
                         <f:setPropertyActionListener value="#{cambiopos}" target="#{NotificationBean.cambiopos}" />
-                        <h:outputText value=" #{cambiopos.auctionid.title} " />
+                        <h:outputText value=" #{cambiopos.auctionid} " />
                     </p:commandLink>
-                    <h:outputText value=" by: #{cambiopos.auctionid.title} " style="display:inline-block"/>
+                    <h:outputText value=" by: #{cambiopos.auctionid} " style="display:inline-block"/>
                     <h:link  outcome="auctioninfo.xhtml" >
                         <f:param  name="id" value="#{NotificationBean.notification.auctionid.auctionid}"/>
-                                <h:outputText  value="#{NotificationBean.notification.auctionid.title}" style="font-weight: 700; "  />
-                            </h:link> 
+                      </h:link> 
                 </p:dataList>
                 <p:dialog id="cambioposdialog" header="Auction where your position has changed" widgetVar="cambioposialog" modal="true" showEffect="blind" hideEffect="explode" resizable="false">
                     <h:form id="changeform">

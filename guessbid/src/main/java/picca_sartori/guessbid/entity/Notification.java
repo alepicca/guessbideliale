@@ -50,16 +50,16 @@ public class Notification implements Serializable {
     @Column(name="notiftype")
     private Notiftype notiftype;
     
-    @ManyToOne
-   // @JoinColumn(name="auctionid", referencedColumnName="auctionid")
+    // @ManyToOne
+    // @JoinColumn(name="auctionid", referencedColumnName="auctionid")
     @NotNull
-    private Auction auctionid;
+    private Integer auctionid;
             
-    @ManyToOne
-  //  @JoinColumn(name="receiver", referencedColumnName="username")
+    // @ManyToOne
+    // @JoinColumn(name="receiver", referencedColumnName="username")
     @Pattern(regexp = "^[a-z0-9A-Z_]{5,25}$", message = "invalid username")
     @NotNull(message = "May not be empty")
-    private Users receiver;
+    private String receiver;
  
      public Notification() {
     }
@@ -68,7 +68,7 @@ public class Notification implements Serializable {
         this.notifid = notifid;
     }
 
-    public Notification(Auction auctionid, Integer notifid, Users receiver, String message, Notiftype notiftype) {
+    public Notification(Integer auctionid, Integer notifid, String receiver, String message, Notiftype notiftype) {
         this.auctionid = auctionid;
         this.notifid = notifid;
         this.receiver = receiver;
@@ -84,19 +84,19 @@ public class Notification implements Serializable {
         this.notifid = notifid;
     } 
     
-    public Auction getAuctionid() {
+    public Integer getAuctionid() {
         return auctionid;
     }
 
-    public void setAuctionid(Auction auctionid) {
+    public void setAuctionid(Integer auctionid) {
         this.auctionid = auctionid;
     } 
     
-     public Users getReceiver() {
+     public String getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(Users receiver) {
+    public void setReceiver(String receiver) {
         this.receiver = receiver;
     }
     

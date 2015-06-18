@@ -28,23 +28,21 @@ public class NotificationManager {
     @EJB
     BidManager bm;
     
-     private void nonhannovinto(Auction asta, Users vincitore) {
-        Query query = em.createNamedQuery("Bid.findPerdenti");
-        query.setParameter("auctionid", asta);
-        query.setParameter("bidder", vincitore);
-         List<Users> results = query.getResultList();
-        if (!results.isEmpty()) {
-            for (Users bidder : results) {
-                creanotifesito(asta, bidder, "Auction" + asta + " ended: the winner is "+ vincitore + "thanks for your participation");
+     private void nonhannovinto(Auction asta, String vincitore) {
+        List<String> perdenti = em.createNamedQuery("Bid.findPerdenti").setParameter("auctionid", asta.getAuctionid()).setParameter("bidder", vincitore).getResultList();
+        if (!perdenti.isEmpty()) {
+            for (String bidder : perdenti) {
+                creanotifesito(asta.getAuctionid(), (Users)em.createNamedQuery(Users.findByUsername).setParameter("username", bidder).getSingleResult(), "Auction" + asta.getTitle() + " ended: the winner is "+ vincitore + "thanks for your participation");
+           //far tornare soldi a chi perde?
             }
         }
     }
      
-     private void creanotifesito(Auction asta, Users user, String message) {
+     private void creanotifesito(Integer asta, Users user, String message) {
         Notification notif = new Notification();
         notif.setMessage(message);
         notif.setAuctionid(asta);
-        notif.setReceiver(user);
+        notif.setReceiver(user.getUsername());
         notif.setNotiftype(Notification.Notiftype.ENDAUCTION);
         em.persist(notif);
         try {
@@ -57,8 +55,8 @@ public class NotificationManager {
      private void creanotifnessunvincitore(Auction asta) {
         Notification notif = new Notification();
         notif.setMessage("Sorry, nobody placed a bid for your auction");
-        notif.setAuctionid(asta);
-      //  notif.setReceiver(asta.getCreator()); passargli l'user e non la stringa
+        notif.setAuctionid(asta.getAuctionid());
+        notif.setReceiver(asta.getCreator()); 
         notif.setNotiftype(Notification.Notiftype.ENDAUCTION);
         em.persist(notif);
         try {
@@ -68,23 +66,21 @@ public class NotificationManager {
         }
     }
      
-     private void creatuttenotiffineasta(Auction auction, Users vincitore) { // capire dove richiamarlo quando finisce l'asta
+     private void creatuttenotiffineasta(Auction auction) { // capire dove richiamarlo quando finisce l'asta
         Bid winningBid = trovavincente(auction);
 
         if (winningBid == null) {
             creanotifnessunvincitore(auction);
-            nonhannovinto(auction, vincitore);
+            
         } else {
-            Users creatoreasta = um.findByUsername(auction.getCreator());
+         //   Users creatoreasta = um.findByUsername(auction.getCreator());
             Users bidder = um.findByUsername(winningBid.getBidder());
-
+            String vincitore = winningBid.getBidder();
         //    updateCredit(seller, bidder, winningBid.getAmount());
        //     auction.setWinningBid(winningBid);      AGGIUNGERE AD AUCTION WINNINGBID E WINNER
           //  auction.setWinner (winningBid.getBidder())
-
-          creanotifesito(auction, bidder, "Congratulations! You won this auction!");
-         /*     generateOutcomeNotification(auction, seller, "Your auction has finished. The winning user is " + bidder.getEmail());
-            generateLoserNotifications(auction, bidder);*/
+            nonhannovinto(auction,vincitore );
+          creanotifesito(auction.getAuctionid(), bidder, "Congratulations! You won this auction!");
         }       
     }
      
@@ -92,8 +88,7 @@ public class NotificationManager {
         Bid winningBid = null;
         
         try { 
-           Bid winbid = (Bid) em.createNamedQuery("Bid.findWinning").setParameter("bidder", auction.getDefinitivewinner()).setParameter("auctionid", auction.getAuctionid()).getSingleResult(); //capire se torna il primo risultato o uno qualsiasi
-            winningBid = bm.findBidById(winbid.getBidid());
+           Bid winningbid = (Bid) em.createNamedQuery(Bid.findDefWinner).setParameter("winning", true).setParameter("auctionid", auction.getAuctionid()).getSingleResult(); //capire se torna giusto
         } catch (Exception e) {
         }
     /*    if (winningBid != null) { //if winning bid exsists check if bidder has enough credit left
@@ -106,21 +101,21 @@ public class NotificationManager {
         return winningBid;
     } 
      
-     public Bid getActualWinning (Auction auction) {
+ /*    public Bid getActualWinning (Auction auction) {
          Bid actualwinning = null;
      //   contamin =  em.createNamedQuery("Bid.findNumMinBid").setParameter("auctionid", auction.getAuctionid());
        // conto quante puntate ci sono con il min amount, se è una è la vincente attuale, se no guardo quelle con amount> ecc..
          
          try {
            //  if (contamin == 1){
-           //  auction.setCurrentwinner(/*astatrovata.getBidder() */ );
+           //  auction.setCurrentwinner(/*astatrovata.getBidder()  );
           //   } 
          } catch (Exception e) {
                             
                              }
          return actualwinning;
      }
-     
+     */
      
      // per tutti gli users che hanno scommesso nell'asta: se cambia notifica il primo classificato è getActualWinning.bidder
 }

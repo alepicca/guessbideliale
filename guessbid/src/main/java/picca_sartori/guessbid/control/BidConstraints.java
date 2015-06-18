@@ -36,5 +36,32 @@ public class BidConstraints {
          if (conta == 1) { 
               bid.setWinning(true);
           }
+         else  {
+            Bid tempbid =(Bid) em.createNamedQuery(Bid.findWinningTrue).setParameter("winning", true).setParameter("auctionid", auctionid).getSingleResult();
+            long uguali = (long)(em.createNamedQuery(Bid.contascommessestessoimporto).setParameter("amount", value).setParameter("auctionid", auctionid).getSingleResult());
+            System.out.println(uguali);
+            if(tempbid.getAmount()>bid.getAmount() && uguali == 1 ){
+             tempbid.setWinning(false);
+             bid.setWinning(true);
+            }
+            
+            if(tempbid.getAmount()==bid.getAmount()){
+                         long contatemp = (long) (em.createNamedQuery(Bid.contascommesseasta).setParameter("auctionid", auctionid).getSingleResult());
+                         int maxamount = (int) (em.createNamedQuery(Bid.findMaxPerAuction).setParameter("auctionid", auctionid).getSingleResult());  
+              //  tempbid.setWinning(false);
+                int temp=value;
+                do{
+                    temp++;
+                    if((long) em.createNamedQuery(Bid.contascommessestessoimporto).setParameter("amount", temp).setParameter("auctionid", auctionid).getSingleResult()== 1){
+                       Bid nuovavin = (Bid) em.createNamedQuery(Bid.findByAmount).setParameter("auctionid", auctionid).setParameter("amount", temp).getSingleResult();
+                       nuovavin.setWinning(true);
+                       tempbid.setWinning(false);
+                       break;
+                    }
+            } while(temp<maxamount);
+            }
+         }
       }
-}
+      
+      }
+
