@@ -163,7 +163,7 @@ ul#menu li.active, ul#menu li:hover {
                 <h:form id="creatauctionform">
             <p:panel id="external"  >
                     <b> <u> Create the auction, sell your object! </u> 
-                    <h3> Welcome, #{LoginBean.username} </h3></b> 
+                    </b> 
                   <fieldset>
                        <br/>
                        <label class="outlab" for="text">Title of the auction</label>
@@ -173,7 +173,7 @@ ul#menu li.active, ul#menu li:hover {
                   <fieldset>
                       <label class="outlab" for="date">Date (DD/MM/YYYY):</label>
                       <br/>
-                      <p:calendar class="allinput" id="expdate" value="#{CreateAuctionBean.auction.expdate}"  placeholder="Expiration date of the auction" required="true" requiredMessage="Expiration date is a mandatory field!" /> 
+                      <p:calendar class="allinput" id="expdate" value="#{CreateAuctionBean.auction.expdate}"  placeholder="Expiration date of the auction" required="true" requiredMessage="A valid expiration date is a mandatory field!" /> 
                   </fieldset>
                     <fieldset>
                        <br/>
@@ -196,6 +196,7 @@ ul#menu li.active, ul#menu li:hover {
                   <p:commandButton class="outlab" action="#{CreateAuctionBean.creaasta(LoginBean.username)}" value="CREATE THE AUCTION" ajax="true" update="@all" />
                 </p:panel>
                     </h:form>
+                <h3> #{CreateAuctionBean.messaggio} </h3>
                 </div>
             <div class="footer"> <h4> Tavava productions, all rights reserved </h4> </div>
         </div>

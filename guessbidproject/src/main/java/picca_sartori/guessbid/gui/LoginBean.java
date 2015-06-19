@@ -70,7 +70,7 @@ public class LoginBean implements Serializable{
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         request.getSession().invalidate();
-        return "login.xhtml";
+        return "/guessbidproject/login.xhtml";
     }
     
     public String getCredenziale() {
