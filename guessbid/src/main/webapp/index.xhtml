@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title>GuessBid</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    </head>
+    <body  style="background: no-repeat center center fixed; background-size: cover;  background-image: url(images/sfondo_1.jpg);  width: 100%; height: 100%">
+        <div id='page'>
+            <div id="guessBidLogo" style="position: absolute; top: 50px; right: 50px;">
+                <a href='#'><img src="./images/logo.jpg" style="height: 100px; width: 150px" alt="logo"/>
+                </a>
+            </div>
+            <div id='title' style="font-size: 30px; color: black; font-family: cursive;" >
+                <p> GuessBid</p>  <br />
+                <p> Place your bet! </p> 
+            </div>
+            <div id='description' style=" font-size: 30px; color:black; font-family: cursive; height: content-box; width: content-box;">
+                <p>GuessBid, the best lowest bid auction site
+                    <br>
+                        Bet less, win more! </br>
+                </p>
+
+                <div style="font-size: 25px; bottom:50px; left: 20%; right:20%; color: black">
+                    <h:link outcome="login" value="Login" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h:link outcome="registration" value="Register" />
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

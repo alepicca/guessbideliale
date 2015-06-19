@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>GuessBid</title>
+         <style type="text/css"> 
+           #regext  {
+               float:right;
+		padding:20px;
+                background-image:  url(images/sfondologin.jpg) ;
+                // background: no-repeat center center fixed;
+                background-size: cover;
+           }
+           .allinput {
+               margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		border:1px solid #0076a3; border-right:0px;
+		border-top-left-radius: 5px 5px;
+		border-bottom-left-radius: 5px 5px;
+           }
+           .outlab {
+               margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		outline: none;
+		cursor: pointer;
+		text-align: center;
+		text-decoration: none;
+		color: #ffffff;
+		border: solid 1px #0076a3; border-right:0px;
+		background: #0095cd;
+		background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+		background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+		border-top-right-radius: 5px 5px;
+		border-bottom-right-radius: 5px 5px;
+           }
+           .outlab:hover {
+               text-decoration: none;
+		background: #007ead;
+		background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+		background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+           }
+           .outlab::-moz-focus-inner {
+               border: 0;
+           }
+           .boh {
+               clear:both;
+           }
+         </style>
+    </head>
+    <body  style="background: no-repeat center center fixed; background-size: cover;  background-image: url(images/sfondo_1.jpg);  width: 100%; height: 100%">
+        <div id='page'>
+            <div id="guessBidLogo" style="position: absolute; top: 50px; right: 50px;">
+                        <a href='#'><img src="./images/logo.jpg" style="height: 100px; width: 150px" alt="logo"/>
+                        </a>
+                </div>
+            <div id='title' style="font-size: 25px; color: black; font-family: cursive; top: 20px; left: 20px;" >
+                 <p> GuessBid</p>  <br />
+                <p> Place your bet! </p> 
+            </div>
+            <div id="registration"  >
+                 <center>
+                     <h:form id="regext" class="regext" style="position: absolute; top: 50px;
+                                    height: content-box; width: content-box; right: 350px; text-align: center;" >
+                         <h:panelGrid columns="1">
+                          <f:facet name="header">
+                         <h:outputText value="Registration"/>
+                         </f:facet>
+                                      <h:outputLabel class="outlab" for="username"> Username
+                                          <h:inputText class="allinput" id="username" value="#{RegistrationBean.user.username}" style="width:300px; float: left; background-color: white" >
+                                     <ajax update="messageusername" placeholder="Insert Username" />
+                                </h:inputText>
+                                <h:message id="messageusername" for="username" />
+                            </h:outputLabel>
+                                      <br /> 
+                                      
+                                      <h:outputLabel class="outlab" for="email">E-mail
+                                <h:inputText class="allinput" id="email" value="#{RegistrationBean.user.email}" style="width:300px;  float:left; background-color: white">
+                                     <ajax update="messageemail" placeholder="Insert a valid Email address"/>
+                                </h:inputText>
+                                <h:message id="messageemail" for="email" />
+                            </h:outputLabel>     
+                            <br />
+                            
+                            <h:outputLabel class="outlab" for="firstname">First Name
+                                <h:inputText class="allinput" id="firstname" value="#{RegistrationBean.user.firstname}" style="width:300px; float:left; background-color: white">
+                                     <ajax update="messagefirstname" placeholder="Insert your First Name" />
+                                </h:inputText>
+                                <h:message id="messagefirstname" for="firstname" />
+                            </h:outputLabel>
+                            <br />
+                            
+                            <h:outputLabel class="outlab" for="lastname">Last Name
+                                <h:inputText class="allinput" id="lastname" value="#{RegistrationBean.user.lastname}" style="width:300px; float:left; background-color: white">
+                                     <ajax update="messagelastname" placeholder="Insert your Last Name"/>
+                                </h:inputText>
+                                <h:message id="messagelastname" for="lastname" />
+                            </h:outputLabel>
+                            <br />
+                                                                                                    
+                            <h:outputLabel class="outlab" for="password">Password
+                                <h:inputText class="allinput" id="password" value="#{RegistrationBean.user.password}" style="width:300px;  float:left; background-color: white">
+                                     <ajax   feedback="true" match="confirmpassword" label="Password" placeholder="Select a valid password"/> 
+                                </h:inputText>
+                            </h:outputLabel>
+                            <br />
+                            
+                            <h:outputLabel class="outlab" for="confirmpassword" >Confirm password
+                                 <h:inputText class="allinput"> 
+                                     <p:password  id="confirmpassword" style="width:300px;  float:left; background-color: white" placeholder="Confirm your password" /> </h:inputText>
+                            </h:outputLabel>
+                            <br />    
+                            
+                            <h:outputLabel class="outlab" for="age">Age
+                                <h:inputText class="allinput" id="age" value="#{RegistrationBean.user.age}" style="width:300px; float:left; background-color: white">
+                                     <ajax update="messageage" placeholder="How old are you?"/>
+                                </h:inputText>
+                                <h:message id="messageage" for="age" />
+                            </h:outputLabel>
+                            <br />
+                     
+                            <f:facet name="footer">
+                                <h:panelGroup style="display:block; text-align:center">
+                                <h:commandButton class="outlab" id="submitregistration" value="Register" action="#{RegistrationBean.register()}" />
+                                </h:panelGroup>
+                            </f:facet>
+                            </h:panelGrid>
+                     </h:form> 
+                                     </center>
+                      </div>
+                     <div style="font-size: 25px; position: absolute; bottom:10px; left:33%; right:33%;"  >
+                     <h:link outcome="index" value="Go back "  />
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <h:link outcome="login" value="Already registered? Log in!!" />
+                     </div>
+            </div>
+    </body>
+</html>
