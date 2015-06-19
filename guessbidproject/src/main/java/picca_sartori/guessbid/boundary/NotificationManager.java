@@ -65,9 +65,8 @@ public class NotificationManager {
             Users bidder = um.findByUsername(winningBid.getBidder());
             String vincitore = winningBid.getBidder();
             auction.setDefinitivewinner(vincitore);
-        //    updateCredit(seller, bidder, winningBid.getAmount());
-       //     auction.setWinningBid(winningBid);      AGGIUNGERE AD AUCTION WINNINGBID E WINNER
-          //  auction.setWinner (winningBid.getBidder())
+            Users creatore = um.findByUsername(auction.getCreator());
+            creatore.setBalance(creatore.getBalance() + winningBid.getAmount());
             nonhannovinto(auction,vincitore );
           creanotifesito(auction.getAuctionid(), bidder, "Congratulations! You won this auction: " + auction.getTitle());
         }       
@@ -80,9 +79,11 @@ public class NotificationManager {
         List<String> perdenti = em.createNamedQuery("Bid.findPerdenti").setParameter("auctionid", asta.getAuctionid()).setParameter("bidder", vincitore).getResultList();
         List <Bid> perdbid = em.createNamedQuery(Bid.findDefWinner).setParameter("auctionid", asta.getAuctionid()).setParameter("winning", false).getResultList();
         if (!perdenti.isEmpty()) {
+            // dire ai perdenti che non hanno vinto (e chi ha vinto)
             for (String bidder : perdenti) {
                 creanotifesito(asta.getAuctionid(), (Users)em.createNamedQuery(Users.findByUsername).setParameter("username", bidder).getSingleResult(), "Auction" + asta.getTitle() + " ended: the winner is "+ asta.getDefinitivewinner() + "thanks for your participation");
-           //far tornare soldi a chi perde?
+          
+                //far tornare soldi a chi perde?
             }
             for  (Bid singola : perdbid) {
                 Users puntatore = (Users)em.createNamedQuery(Users.findByUsername).setParameter("username", singola.getBidder()).getSingleResult();
