@@ -26,6 +26,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery (name = "notification.findByReceiver", query = "SELECT n FROM notification n WHERE n.receiver = :receiver"),
     @NamedQuery (name = "notification.findByCategory", query = "SELECT n FROM notification n WHERE n.receiver = :receiver and n.notiftype = :notiftype"),
     @NamedQuery (name= "notification.findByNotifid", query= "SELECT n FROM notification n WHERE n.notifid  = :notifid"),
+    @NamedQuery (name= "notification.deleteParziali",query= " DELETE FROM notification n WHERE n.auctionid = :auctionid and n.receiver = :receiver and n.notiftype = :notiftype" ),
+
 })
 
 public class Notification implements Serializable {
@@ -36,6 +38,8 @@ public class Notification implements Serializable {
     public static final String findByNotifid= "notification.findByNotifid";
     public static final String findByCategory= "notification.findByCategory";
     public static final String findByNotiftype= "notification.findByNotiftype";
+    public static final String deleteParziali= "notification.deleteParziali";
+    
     public static final long serialVersionUID = 1L;
 
     @NotNull

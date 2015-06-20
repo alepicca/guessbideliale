@@ -32,9 +32,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery ( name ="bid.findDefWinner", query= "SELECT b FROM bid b where b.auctionid = :auctionid and b.winning= :winning"),
     @NamedQuery (name= "bid.quantepiubuone", query = "SELECT COUNT (b) FROM bid b WHERE b.auctionid = :auctionid AND b.amount < :amount"),
     @NamedQuery (name ="bid.findWinningTrue", query= "SELECT b FROM bid b where b.winning = :winning and b.auctionid= :auctionid"),
-    @NamedQuery (name = "bid.contascommessestessoimporto", query = "SELECT COUNT (b) FROM bid b WHERE b.auctionid = :auctionid and b.amount =:amount"),
+    @NamedQuery (name = "bid.contascommessestessoimporto", query = "SELECT COUNT (b) FROM bid b WHERE b.auctionid = :auctionid and b.amount =:amount "),
     @NamedQuery (name = "bid.findByAmount", query = "SELECT  b FROM bid b WHERE b.auctionid = :auctionid and b.amount =:amount"),
     @NamedQuery (name = "bid.findMaxPerAuction", query ="SELECT max(b.amount) FROM bid b WHERE b.auctionid =:auctionid"),
+    @NamedQuery (name = "bid.contascommessesameimp", query = "SELECT COUNT (b) FROM bid b WHERE b.auctionid = :auctionid and b.amount =:amount and b.bidder =:bidder"),
+
 })
 public class Bid implements Serializable{
     
@@ -53,6 +55,7 @@ public class Bid implements Serializable{
     public static final String contascommessestessoimporto = "bid.contascommessestessoimporto";
     public static final String findByAmount = "bid.findByAmount";
     public static final String findMaxPerAuction = "bid.findMaxPerAuction";
+    public static final String contascommessesameimp="bid.contascommessesameimp";
     public static final long serialVersionUID = 1L;
     
     

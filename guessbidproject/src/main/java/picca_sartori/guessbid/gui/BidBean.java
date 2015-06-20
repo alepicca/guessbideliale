@@ -84,7 +84,7 @@ public class BidBean implements Serializable{
    public String scommetti (String user, Integer idasta, Integer importo) {
      //  FacesContext context = FacesContext.getCurrentInstance();
        Auction asta = (Auction) em.createNamedQuery(Auction.findByAuctionid).setParameter("auctionid", idasta).getSingleResult();
-       if (!bcs.equalsBidderCreator(user, asta.getCreator()) && bcs.checkAmount(user, importo)) {
+       if (!bcs.equalsBidderCreator(user, asta.getCreator()) && bcs.checkAmount(user, importo,asta.getAuctionid())) {
        Bid scommessa = new Bid();
        scommessa.setAuctionid(idasta);
         scommessa.setBidder(user);
@@ -105,7 +105,7 @@ public class BidBean implements Serializable{
         }
        }
        else {
-           message=" Error in placing the last Bid!!! Remember you can not bid for auctions created by yourself or you don't have enough credits";
+           message=" Error in placing the last Bid!!! Remember you can not bid for auctions created by yourself or you don't have enough credits or you have already place a bid with the same import";
            // mex "non puoi scommettere!" FARGLIELO CAGARE FUORI IN QUALCHE MODO
        }
        return "home.xhtml";

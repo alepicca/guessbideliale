@@ -24,10 +24,11 @@ public class BidConstraints {
     }
      
      // se ha più di 2 crediti torna vero (e quindi può scommettere)
-      public boolean checkAmount (String username, int importo) {
+      public boolean checkAmount (String username, int importo,int auctionid) {
         Users result = em.createNamedQuery(Users.findByUsername, Users.class)
                   .setParameter("username", username).getSingleResult();
-        if (result.getBalance() > (2+ importo)) {
+        long conta=(long) em.createNamedQuery(Bid.contascommessesameimp).setParameter("auctionid", auctionid).setParameter("amount", importo).setParameter("bidder", username).getSingleResult();
+        if (result.getBalance() > (2+ importo) && conta==0) {
             result.setBalance(result.getBalance() - importo -2);
         return  true;
         }
