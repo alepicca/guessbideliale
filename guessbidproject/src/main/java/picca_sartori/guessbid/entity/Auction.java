@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery (name= "auction.findByAll", query= "SELECT a FROM auction a"),
-    @NamedQuery (name = "auction.findActive", query = "SELECT a FROM auction a WHERE a.expdate >= :expdate "),
+    @NamedQuery (name = "auction.findActive", query = "SELECT a FROM auction a WHERE a.expdate > :expdate "),
     @NamedQuery (name= "auction.findByAuctionid", query= "SELECT a FROM auction a WHERE a.auctionid  = :auctionid"),
     @NamedQuery (name = "auction.findByCreator", query = "SELECT a FROM auction a WHERE a.creator = :creator"),
     @NamedQuery (name = "auction.findByCreator", query = "SELECT a FROM auction a WHERE a.creator = :creator"),
@@ -64,12 +64,12 @@ public class Auction implements Serializable {
     @NotNull (message = "May not be empty")
     private String iteminfo;
     
-    @Column (name = "itemphoto")
-    @NotNull(message = "May not be empty")
-    private String itemphoto;
+    @Column (name = "finita")
+    private boolean finita;
     
     private String currentwinner;
     private String definitivewinner;
+    
     
      public Auction() {
     }
@@ -78,14 +78,14 @@ public class Auction implements Serializable {
         this.auctionid = auctionid;
     }
 
-    public Auction(Integer auctionid, Date expdate, String creator, String title, String itemdescription, String iteminfo, String itemphoto) {
+    public Auction(Integer auctionid, Date expdate, String creator, String title, String itemdescription, String iteminfo, boolean finita) {
         this.auctionid = auctionid;
         this.expdate = expdate;
         this.creator = creator;
         this.title = title;
         this.itemdescription = itemdescription;
         this.iteminfo = iteminfo;
-        this.itemphoto = itemphoto;
+        this.finita= finita;
     }
     
     public Integer getAuctionid() {
@@ -151,11 +151,12 @@ public class Auction implements Serializable {
         this.iteminfo = iteminfo;
     }
     
-     public String getItemphoto() {
-        return itemphoto;
+    
+    public boolean getFinita() {
+        return finita;
     }
-
-    public void setItemphoto(String itemphoto) {
-        this.itemphoto = itemphoto;
+    
+    public void setFinita (boolean finita) {
+        this.finita = finita;
     }
 }

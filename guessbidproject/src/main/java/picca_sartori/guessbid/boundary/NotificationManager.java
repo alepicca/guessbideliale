@@ -11,9 +11,6 @@ import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.ScheduleExpression;
 import javax.ejb.Stateless;
-import javax.ejb.Timeout;
-import javax.ejb.TimerConfig;
-import javax.ejb.TimerService;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -37,26 +34,16 @@ public class NotificationManager {
 
     @EJB
     BidManager bm;
-    
-    @Resource
-    private TimerService timerService;
-    
-    List <Auction> astefinite = new ArrayList() ;
-    
-    @PostConstruct
-    private void init() {
-        ScheduleExpression amezzanotte = new ScheduleExpression().second("0").minute("0").hour("0");
-        timerService.createCalendarTimer(amezzanotte, new TimerConfig("", false));
-    }    
-        
-    @Timeout
-      private void creatuttenotiffineasta() { 
-       List <Auction> tutteleaste =  em.createNamedQuery("Auction.findAll").getResultList();
+     
+   
+      public void creatuttenotiffineasta() { 
+       List <Auction> tutteleaste =  em.createNamedQuery(Auction.findByAll).getResultList();
        
        for (Auction auction : tutteleaste){
-          if (finita(auction) && !astefinite.contains(auction)){
+          if (finita(auction) && auction.getFinita() == false){
+              auction.setFinita(true);
           Bid winningBid = trovavincente(auction);
-          astefinite.add(auction);
+         // astefinite.add(auction);
             if (winningBid == null) {
             creanotifnessunvincitore(auction);  
             }
@@ -108,7 +95,7 @@ public class NotificationManager {
     
      private void creanotifnessunvincitore(Auction asta) {
         Notification notif = new Notification();
-        notif.setMessage("Sorry, nobody placed a bid for your auction");
+        notif.setMessage("Sorry, nobody placed a bid for your auction " + asta.getTitle() );
         notif.setAuctionid(asta.getAuctionid());
         notif.setReceiver(asta.getCreator()); 
         notif.setNotiftype(Notification.Notiftype.ENDAUCTION);
@@ -150,16 +137,16 @@ public class NotificationManager {
      
      // per tutti gli users che hanno scommesso nell'asta: se cambia notifica il primo classificato è getActualWinning.bidder
 
-   public void creanotifparziale (String username, int auctionid,boolean vincente) {
+   public void creanotifparziale (String username, int auctionid,boolean vincente, int amount) {
        Notification notif = new Notification();
        notif.setAuctionid(auctionid);
        notif.setReceiver(username);
        notif.setNotiftype(Notification.Notiftype.CHANGEPOSITION);
        Auction titolo= (Auction) em.createNamedQuery(Auction.findByAuctionid).setParameter("auctionid", auctionid).getSingleResult();
        if(vincente){
-       notif.setMessage("You are the current winner for the auction: "+ titolo.getTitle());
+       notif.setMessage("You are the current winner for the auction: "+ titolo.getTitle() + " with the bid value of "+amount );
        }else{
-       notif.setMessage("You aren't the current winner for the auction: "+ titolo.getTitle());
+       notif.setMessage("You aren't the current winner for the auction: "+ titolo.getTitle()+ " with the bid value of "+amount);
        }
        em.persist(notif);
         try {
