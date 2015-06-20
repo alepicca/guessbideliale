@@ -66,6 +66,8 @@ public class LoginBean implements Serializable{
             request.setAttribute("username", username);
             credenziale = (String) request.getAttribute("username");
             nm.creatuttenotiffineasta();
+            nm.setUtenteloggato(username);
+            
             return "/user/home";
         } catch (ServletException e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Login Failed","Login Failed"));

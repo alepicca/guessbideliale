@@ -14,6 +14,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 import javax.servlet.http.HttpServletRequest;
 import picca_sartori.guessbid.boundary.AuctionManager;
+import picca_sartori.guessbid.boundary.NotificationManager;
 import picca_sartori.guessbid.boundary.UserManager;
 import picca_sartori.guessbid.control.CheckModifications;
 import picca_sartori.guessbid.entity.Auction;
@@ -29,6 +30,9 @@ public class NotificationBean {
    
     @EJB
     private UserManager um;    
+    
+    @EJB
+    private NotificationManager nm;
     
     private static Map<String, String> mappa;
     private Map<String, String> parametri;
@@ -81,7 +85,7 @@ public class NotificationBean {
       }
 
       public List<Notification> getFineasta() {
-          List<Notification> fineasta = em.createNamedQuery(Notification.findByCategory).setParameter("receiver", "eliseo").setParameter("notiftype", Notification.Notiftype.ENDAUCTION).getResultList();
+          List<Notification> fineasta = em.createNamedQuery(Notification.findByCategory).setParameter("receiver", nm.getUtenteloggato()).setParameter("notiftype", Notification.Notiftype.ENDAUCTION).getResultList();
          return fineasta;
       }
       
@@ -90,7 +94,7 @@ public class NotificationBean {
 
         }     
       public List<Notification> getCambiopos() {
-          List<Notification> cambioposizione = em.createNamedQuery(Notification.findByCategory).setParameter("receiver", "eliseo" ).setParameter("notiftype", Notification.Notiftype.CHANGEPOSITION).getResultList();
+          List<Notification> cambioposizione = em.createNamedQuery(Notification.findByCategory).setParameter("receiver", nm.getUtenteloggato() ).setParameter("notiftype", Notification.Notiftype.CHANGEPOSITION).getResultList();
           return cambioposizione;
       }
       

@@ -34,6 +34,16 @@ public class NotificationManager {
 
     @EJB
     BidManager bm;
+    
+    private String utenteloggato;
+    
+    public String getUtenteloggato() {
+        return utenteloggato;
+    }
+
+    public void setUtenteloggato(String utenteloggato) {
+        this.utenteloggato = utenteloggato;
+    }
      
    
       public void creatuttenotiffineasta() { 
