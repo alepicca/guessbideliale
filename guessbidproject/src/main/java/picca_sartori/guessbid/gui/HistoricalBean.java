@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
+import picca_sartori.guessbid.boundary.NotificationManager;
 import picca_sartori.guessbid.boundary.UserManager;
 import picca_sartori.guessbid.entity.Auction;
 import picca_sartori.guessbid.entity.Bid;
@@ -23,6 +24,9 @@ public class HistoricalBean implements Serializable {
     
     @PersistenceContext
     EntityManager em;
+    
+    @EJB
+    private NotificationManager nm;
     
     @EJB
     private UserManager um;
@@ -68,7 +72,7 @@ public class HistoricalBean implements Serializable {
           today.set(Calendar.MINUTE, 0);
           today.set(Calendar.SECOND, 0);
           Date date = today.getTime();
-          List<Auction> historical = em.createNamedQuery(Bid.findHistorical).setParameter("bidder", "eliseo").setParameter("expdate", date).getResultList(); 
+          List<Auction> historical = em.createNamedQuery(Bid.findHistorical).setParameter("bidder", nm.getUtenteloggato()).setParameter("expdate", date).getResultList(); 
           return historical;
       }
       

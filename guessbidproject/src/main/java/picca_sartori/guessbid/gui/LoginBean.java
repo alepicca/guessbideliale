@@ -3,6 +3,7 @@ package picca_sartori.guessbid.gui;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.faces.application.FacesMessage;
 import javax.enterprise.context.RequestScoped;
@@ -16,6 +17,7 @@ import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import picca_sartori.guessbid.boundary.NotificationManager;
 import picca_sartori.guessbid.entity.Users;
 
 @Named
@@ -24,6 +26,9 @@ public class LoginBean implements Serializable{
     
     @PersistenceContext
     private EntityManager em;
+    
+    @EJB
+    private NotificationManager nm;
     
     
     @Inject
@@ -60,6 +65,9 @@ public class LoginBean implements Serializable{
             request.login(this.username, this.password);
             request.setAttribute("username", username);
             credenziale = (String) request.getAttribute("username");
+            nm.creatuttenotiffineasta();
+            nm.setUtenteloggato(username);
+            
             return "/user/home";
         } catch (ServletException e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Login Failed","Login Failed"));
@@ -70,7 +78,7 @@ public class LoginBean implements Serializable{
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         request.getSession().invalidate();
-        return "login.xhtml";
+        return "/guessbidproject/login.xhtml";
     }
     
     public String getCredenziale() {

@@ -49,8 +49,9 @@ public class CreateAuctionBean implements Serializable {
     private static Map<String, String> mappa;
     private Map<String, String> parametri;
     private Auction auction, selectedauction, ciao;
-    private Date date;
+    private Date date, oggi;
     int auctionid;
+    private String messaggio;
     private List <Auction> tutteleastevalide; //em.createNamedQuery(Auction.findActive).getResultList();  
     
     public CreateAuctionBean() {
@@ -116,11 +117,18 @@ public class CreateAuctionBean implements Serializable {
     }
     
     public String creaasta(String user){
+       if (auction.getExpdate().after(getOggi())) {
         auction.setCreator(user);
         am.create(auction);
         FacesContext context = FacesContext.getCurrentInstance();
             
         return "/user/home";
+       }
+       else {
+           messaggio= "There was a problem with the creation of your last auction, please retry or check your data";
+           return "/user/createauction";
+           
+       }
     }
     
     public String submit(){
@@ -139,6 +147,21 @@ public class CreateAuctionBean implements Serializable {
         return a;
     }
      
+    public Date getOggi() {
+        Calendar today = Calendar.getInstance();
+          today.set(Calendar.HOUR_OF_DAY,0);
+          today.set(Calendar.MINUTE, 0);
+          today.set(Calendar.SECOND, 0);
+          Date oggi = today.getTime();          
+          return oggi;
+    }
     
-      
+    public String getMessaggio() {
+       return messaggio;
+    }
+    
+    public void setMessaggio() {
+        this.messaggio= messaggio;
+    }
+     
     }
